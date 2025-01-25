@@ -23,7 +23,7 @@ const LandingSignUp = () => {
 
 
   return (
-    <div className='w-full flex flex-col gap-5 bg-base-1 rounded-xl items-center text-white text-center py-[24px] px-[32px]'>
+    <div className='w-full flex flex-col gap-5 bg-base-1 rounded-xl items-center text-white text-center py-[24px] px-[32px] max-md:px-3'>
         <p className='text-2xl font-bold'>Sign up for free</p>
         <form action="submit" className='flex flex-col w-full gap-3 justify-between'>
             <div className='flex flex-col gap-1'>

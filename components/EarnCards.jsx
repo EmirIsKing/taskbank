@@ -24,15 +24,15 @@ const EarnCards = ({ title, desc, epgmin, epgmax, imgback, mode, img1, img2, img
       <div className={`relative bg-cover w-2/3 h-44`}
       style={{ backgroundImage: `url("${imgback}")` }}>
         {!img1Checker && (
-          <div className="animate-float left-[-10px] absolute top-4 w-12 h-12 bg-cover max-md:w-auto" 
+          <div className="animate-float left-[-10px] absolute top-4 w-12 h-12 bg-cover max-md:w-12" 
                style={{ backgroundImage: `url("/images/${img1}")` }}></div>
         )}
         {!img2Checker && (
-          <div className="animate-float left-1 absolute top-20 w-12 h-12 bg-cover max-md:w-auto" 
+          <div className="animate-float left-1 absolute top-20 w-12 h-12 bg-cover max-md:w-12" 
                style={{ backgroundImage: `url("/images/${img2}")` }}></div>
         )}
         {!img3Checker && (
-          <div className={`animate-float right-5 absolute top-10 w-${w} h-${h} bg-cover max-md:w-auto`} 
+          <div className={`animate-float right-5 absolute top-10 w-${w} h-${h} bg-cover max-md:w-12`} 
                style={{ backgroundImage: `url("/images/${img3}")` }}></div>
         )}
       </div>
