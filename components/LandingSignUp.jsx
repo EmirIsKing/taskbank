@@ -54,12 +54,12 @@ const LandingSignUp = () => {
                 }
             )}>
                 <label className="inline-flex items-center mb-3">
-                    <Checkbox className="w-4 h-4 data-[state=checked]:bg-base-2 border-white data-[state=checked]:border-base-2" />
+                    <Checkbox id="terms" required name="terms" className="w-4 h-4 data-[state=checked]:bg-base-2 border-white data-[state=checked]:border-base-2" />
                     <p className="ml-2 text-xs text-blue-200 text-opacity-85 font-medium">I agree to the Terms of Services and Privacy Policy</p>
                 </label>
                 <p className='text-xs text-left leading-4 text-blue-200 text-opacity-85 font-medium'>Further information on the processing of your personal data can be found in the Privacy Policy.</p>
             </div>
-            <button className={`${poppins.className} mt-1 w-full flrx h-12 rounded-lg bg-base-2 text-black font-bold`}>Start earning now</button>
+            <button className={`${poppins.className} hover:bg-green-500 active:opacity-70 transition-all mt-1 w-full flrx h-12 rounded-lg bg-base-2 text-black font-bold`}>Start earning now</button>
         </form> 
         <div className='w-full flex justify-center gap-3 items-center text-slate-400'>
             <div className='w-full h-[1px] bg-gradient-to-l from-slate-300 to-base-4'></div>
@@ -67,7 +67,7 @@ const LandingSignUp = () => {
             <div className='w-full h-[1px] bg-gradient-to-l to-slate-300 from-base-4'></div>
         </div>
         <div className='w-full'>
-            <button className={`${poppins.className} mt-1 w-full h-12 rounded-lg bg-white text-black font-semibold`}>
+            <button className={`${poppins.className} mt-1 w-full h-12 rounded-lg bg-white hover:bg-slate-200 hover:opacity-85 active:opacity-70 text-black font-semibold`}>
                 Sign Up with Google
             </button>
         </div>

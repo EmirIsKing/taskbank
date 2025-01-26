@@ -43,7 +43,7 @@ const Landing = () => {
                   <Image alt='netflix' src={'/images/netflix.webp'} width={128.03} height={128.03} className='rounded-md max-md:w-[90px] max-md:h-[90px]'/>
                 </div>
                 <p className='pt-1 w-full text-xs font-bold text-white'>Netflix</p>
-                <p className={`${poppins.className} mt-1 text-xs font-light text-blue-200 opacity-85`}>Start a trial month</p>
+                <p className={`${poppins.className} mt-1 text-xs font-light text-blue-200 opacity-85 w-full max-md:whitespace-nowrap max-md:overflow-hidden`}>Start a trial month</p>
                 <div className='w-full mt-1 flex justify-between'>
                   <div className='flex justify-center items-center'>
                     <div className={`font-bold ${poppins.className} text-white`}>$5</div>
@@ -114,17 +114,17 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className='flex mx-[133px] max-md:mx-4 max-md:mt-2 mt-9 max-md:flex-col gap-0 max-md:gap-6'>
-            <div className='w-full sticky top-20 px-16 self-start max-md:px-4 max-md:static'>
-              <h2 className={`${poppins.className} text-white text-[32px] leading-[44px] text-left font-bold max-md:text-[25px] max-md:leading-7`}>Want to earn free 
+        <div className='grid grid-cols-[358px_600px] max-md:grid-cols-1 mx-[133px] px-4 max-md:mx-4 max-md:mt-2 mt-9 max-md:flex-col gap-24 max-md:gap-6'>
+            <div className='w-full sticky top-20 self-start max-md:px-4 max-md:static'>
+              <h2 className={`${poppins.className} text-white text-3xl text-left font-bold max-md:text-[25px] max-md:leading-7`}>Want to earn free 
                 <br/>cash within minutes?
               <span className='text-base-2'>
               Here’s how  
               </span></h2>
               <div className='mt-14 max-md:hidden'>
-                <button className={`${poppins.className} mt-1 w-full flrx h-12 rounded-lg bg-base-2 text-black font-semibold`}>
+                <a href='/sign-up' className={`${poppins.className} mt-1 w-full px-11 hover:bg-green-500 active:opacity-55 transition-all py-3 h-14 text-xl rounded-lg bg-base-2 text-black font-semibold`}>
                     Start earning now
-                </button>
+                </a>
               </div>           
             </div>
           <div className='flex w-full h-full flex-col gap-12 text-white'>
