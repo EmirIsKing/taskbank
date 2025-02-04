@@ -8,7 +8,7 @@ const page = () => {
 const providers = [
   {
     name: "Bitlabs Offers",
-    image: "/images/Bitlabs Offers.svg",
+    image: "/images/Bitlabs-Offers.svg",
     iframeName: "Bitlabs",
     iframeSrc: `https://web.bitlabs.ai/?uid=12345&token=2b557582-2d62-4083-975c-efa2cd7c3af1`
 
