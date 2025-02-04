@@ -412,11 +412,11 @@ const page = () => {
                     <li className
 ="css-0">To send, knowingly receive, upload, download, use or re-use any material which does not comply with the Content Standards set out in these Terms of Services.</li>
                     <li className
-="css-0">To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail", "chain letter", "spam", or any other similar solicitation.</li>
+="css-0">To transmit, or procure the sending of, any advertising or promotional material, including any &quot;junk mail&quot;, &quot;chain letter&quot;, &quot;spam&quot;, or any other similar solicitation.</li>
                     <li className
 ="css-0">To impersonate or attempt to impersonate Taskbank, an Taskbank employee, another user or any other person or entity (including, without limitation, by using e-mail addresses or screen names associated with any of the foregoing).</li>
                     <li className
-="css-0">To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Website, or which, as determined by us, may harm Taskbank or users of the Website, or expose them to liability.</li>
+="css-0">To engage in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Website, or which, as determined by us, may harm Taskbank or users of the Website, or expose them to liability.</li>
                     <li className
 ="css-0">To engage in any fraudulent activity. Such activities may include, but is not limited to, masking or forging your identity, submitting false information during the registration process, submitting false or untrue data, redeeming or attempting to redeem Rewards through false or fraudulent means, and tampering with surveys or Offers.</li>
                     </ul>
@@ -459,7 +459,7 @@ const page = () => {
                 <ol role="list" className
 ="css-4skkdi">
                 <li className
-="css-0">The Website may contain message boards, chat rooms, personal web pages or profiles, forums, bulletin boards, and other interactive features (collectively, "Interactive Services") that allow users to post, submit, publish, display or transmit to other users or other persons (hereinafter, "post") content or materials (collectively, "User Contributions") on or through the Website.</li>
+="css-0">The Website may contain message boards, chat rooms, personal web pages or profiles, forums, bulletin boards, and other interactive features (collectively, &quot;Interactive Services&quot;) that allow users to post, submit, publish, display or transmit to other users or other persons (hereinafter, &quot;post&quot;) content or materials (collectively, &quot;User Contributions&quot;) on or through the Website.</li>
                 <li className
 ="css-0">All User Contributions must comply with the Content Standards set out in these Terms of Services.</li>
                 <li className
@@ -690,7 +690,7 @@ const page = () => {
                 <li className
 ="css-0">You understand that we cannot and do not guarantee or warrant that files available for downloading from the internet or the Website will be free of viruses or other destructive code. You are responsible for implementing sufficient procedures and checkpoints to satisfy your particular requirements for anti-virus protection and accuracy of data input and output, and for maintaining a means external to our site for any reconstruction of any lost data. WE WILL NOT BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY A DISTRIBUTED DENIAL-OF-SERVICE ATTACK, VIRUSES OR OTHER TECHNOLOGICALLY HARMFUL MATERIAL THAT MAY INFECT YOUR COMPUTER EQUIPMENT, COMPUTER PROGRAMS, DATA OR OTHER PROPRIETARY MATERIAL DUE TO YOUR USE OF THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE OR TO YOUR DOWNLOADING OF ANY MATERIAL POSTED ON IT, OR ON ANY WEBSITE LINKED TO IT.</li>
                 <li className
-="css-0">YOUR USE OF THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE IS AT YOUR OWN RISK. THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER Taskbank NOR ANY PERSON ASSOCIATED WITH Taskbank MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE WEBSITE. WITHOUT LIMITING THE FOREGOING, NEITHER Taskbank NOR ANYONE ASSOCIATED WITH Taskbank REPRESENTS OR WARRANTS THAT THE WEBSITE, ITS CONTENT OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL BE ACCURATE, RELIABLE, ERROR-FREE OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.</li>
+="css-0">YOUR USE OF THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE IS AT YOUR OWN RISK. THE WEBSITE, ITS CONTENT AND ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER Taskbank NOR ANY PERSON ASSOCIATED WITH Taskbank MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY OR AVAILABILITY OF THE WEBSITE. WITHOUT LIMITING THE FOREGOING, NEITHER Taskbank NOR ANYONE ASSOCIATED WITH Taskbank REPRESENTS OR WARRANTS THAT THE WEBSITE, ITS CONTENT OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL BE ACCURATE, RELIABLE, ERROR-FREE OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT OUR SITE OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE WEBSITE OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE WEBSITE WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.</li>
                 <li className
 ="css-0">Taskbank HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR PARTICULAR PURPOSE.</li>
                 <li className
@@ -723,7 +723,7 @@ const page = () => {
             <div className
 ="chakra-stack css-m3jj3s">
                 <p className
-="chakra-text css-anezcv">You agree to defend, indemnify and hold harmless Taskbank, its affiliates, licensors and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms of Services or your use of the Website, including, but not limited to, your User Contributions, any use of the Website's content, services and products other than as expressly authorized in these Terms of Services, or your use of any information obtained from the Website.</p>
+="chakra-text css-anezcv">You agree to defend, indemnify and hold harmless Taskbank, its affiliates, licensors and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms of Services or your use of the Website, including, but not limited to, your User Contributions, any use of the Website&apos;s content, services and products other than as expressly authorized in these Terms of Services, or your use of any information obtained from the Website.</p>
             </div>
             </div>
         </div>
