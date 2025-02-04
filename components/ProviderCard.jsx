@@ -19,11 +19,11 @@ const ProviderCard = ({ img, iframeName, iframeSrc, name }) => {
 								e.preventDefault();
 								setIsOpen(!isOpen);
 							}} className='w-full py-7'>
-							<div className='w-32 h-56 flex flex-col bg-gradient-to-b from-base-3 to-[#1f1f6e] rounded-lg' 
+							<div className='w-32 h-56 flex flex-col bg-gradient-to-b from-base-3 to-[#1f1f6e] rounded-lg ' 
 							onMouseEnter={()=>{setBlur(true); setHidden(false);}} onMouseLeave={()=>{setBlur(false); setHidden(true);}}>
 								<div className='relative w-full h-full justify-center items-center flex flex-col'>
 									<div className='z-0'> 
-										<img alt='offers' src={img} width={100} height={100} unoptimized/>
+										{React.createElement(img, { className: "" })}
 									</div>
 									<div className='mt-14 z-20'>
 										<span className='align-bottom z-20 text-base font-medium px-1'>{name}</span>
@@ -33,7 +33,7 @@ const ProviderCard = ({ img, iframeName, iframeSrc, name }) => {
 									})}>
 										<div className='w-full items-center justify-center flex flex-col'>
 											<div className='flex rounded-full w-9 h-9 bg-base-2 bg-opacity-30 justify-center items-center'>
-												<img alt='offers' loading='eager' src={img} width={10} height={10} unoptimized/>
+											<Image src={'/images/svg-image-58.svg'} width={10} height={10}/>
 											</div>
 											<span className='text-sm'>View Offers</span>
 										</div>
