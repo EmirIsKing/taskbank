@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Close from '@/public/images/close.svg'
 
-const ProviderCard = ({ provider }) => {
+const ProviderCard = ({ img, iframeName, iframeSrc, name }) => {
 
 	const [blur, setBlur] = useState(false);
 	const [hidden, setHidden] = useState(true);
@@ -23,10 +23,10 @@ const ProviderCard = ({ provider }) => {
 							onMouseEnter={()=>{setBlur(true); setHidden(false);}} onMouseLeave={()=>{setBlur(false); setHidden(true);}}>
 								<div className='relative w-full h-full justify-center items-center flex flex-col'>
 									<div className='z-0'> 
-										<Image alt='offers' src={'/images/Bitlabs Offers.svg'} width={100} height={100}/>
+										<Image alt='offers' src={img} width={100} height={100}/>
 									</div>
 									<div className='mt-14 z-20'>
-										<span className='align-bottom z-20 text-base font-medium px-1'>{provider.name}</span>
+										<span className='align-bottom z-20 text-base font-medium px-1'>{name}</span>
 									</div>
 									<div className={cn('absolute flex top-0 h-[80%] justify-center items-center z-30 transition-all ease-in duration-300', {
 										"hidden": hidden
@@ -48,7 +48,7 @@ const ProviderCard = ({ provider }) => {
 							<div className="bg-transparent flex shadow-none border-none absolute justify-center items-center top-10 left-0 w-full max-md:w-[70vw] max-md:left-14 h-[90vh] border bg-white rounded-lg z-50">
 								<div className='flex flex-col h-full'>
 									<div className='relative flex justify-between items-center px-5 bg-base-3 w-full py-2 rounded-t-lg'>
-										<span className='text-2xl font-bold'>{provider.iframeName}</span>
+										<span className='text-2xl font-bold'>{iframeName}</span>
 										<button
 											className="p-2 bg-transparent text-white rounded-full border border-blue-200 border-opacity-85"
 											onClick={() => setIsOpen(false)}
@@ -58,7 +58,7 @@ const ProviderCard = ({ provider }) => {
 									</div>
 									<div className='w-full h-full rounded-b-lg bg-base-3'>
 										<iframe
-										src={provider.iframeSrc}
+										src={iframeSrc}
 										className="w-[600px] h-[98%] max-md:w-[95vw]"
 									></iframe>
 									</div>
