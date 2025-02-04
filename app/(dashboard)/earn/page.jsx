@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
+import Bell from '@/public/images/bell.svg'
 
 const page = () => {
 
@@ -9,7 +10,7 @@ const page = () => {
 const providers = [
   {
     name: "Bitlabs Offers",
-    image: BitlabsSvg,
+    image: Bell,
     iframeName: "Bitlabs",
     iframeSrc: `https://web.bitlabs.ai/?uid=12345&token=2b557582-2d62-4083-975c-efa2cd7c3af1`
 
