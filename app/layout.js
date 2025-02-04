@@ -1,5 +1,6 @@
 import "./globals.css";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: "TaskBank",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Analytics/>
       </Head>
       <body>
         {children}
