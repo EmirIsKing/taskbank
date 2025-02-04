@@ -425,7 +425,7 @@ const page = () => {
 ="css-0">Additionally, you agree not to: <ul role="list" className
 ="css-3r4cyk">
                     <li className
-="css-0">Use the Website in any manner that could disable, overburden, damage, or impair the site or interfere with any other party's use of the Website, including their ability to engage in real time activities through the Website.</li>
+="css-0">Use the Website in any manner that could disable, overburden, damage, or impair the site or interfere with any other party&apos;s use of the Website, including their ability to engage in real time activities through the Website.</li>
                     <li className
 ="css-0">Use any robot, spider or other automatic device, process or means to access the Website for any purpose, including monitoring or copying any of the material on the Website.</li>
                     <li className

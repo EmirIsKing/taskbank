@@ -23,7 +23,7 @@ const ProviderCard = ({ provider }) => {
 							onMouseEnter={()=>{setBlur(true); setHidden(false);}} onMouseLeave={()=>{setBlur(false); setHidden(true);}}>
 								<div className='relative w-full h-full justify-center items-center flex flex-col'>
 									<div className='z-0'> 
-										<Image src={'/images/Bitlabs Offers.svg'} width={100} height={100}/>
+										<Image alt='offers' src={'/images/Bitlabs Offers.svg'} width={100} height={100}/>
 									</div>
 									<div className='mt-14 z-20'>
 										<span className='align-bottom z-20 text-base font-medium px-1'>{provider.name}</span>
@@ -33,7 +33,7 @@ const ProviderCard = ({ provider }) => {
 									})}>
 										<div className='w-full items-center justify-center flex flex-col'>
 											<div className='flex rounded-full w-9 h-9 bg-base-2 bg-opacity-30 justify-center items-center'>
-												<Image loading='eager' src={'/images/svg-image-58.svg'} width={10} height={10}/>
+												<Image alt='offers' loading='eager' src={'/images/svg-image-58.svg'} width={10} height={10}/>
 											</div>
 											<span className='text-sm'>View Offers</span>
 										</div>
