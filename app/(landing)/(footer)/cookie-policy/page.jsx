@@ -54,7 +54,7 @@ const page = () => {
         If you have any questions about this Cookie Policy, please contact us at:
       </p>
       <ul className="list-disc pl-6">
-        <li>Email: support@taskbank.com</li>
+        <li>Email: support@taskbank.online</li>
       </ul>
     </div>
   )

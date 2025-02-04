@@ -9,7 +9,7 @@ const page = () => {
       <p className="chakra-text css-iqc25v text-xl">INTRODUCTION</p>
       <div className="css-12cru54">
         <div className="chakra-stack css-m3jj3s">
-          <p className="chakra-text css-anezcv">Welcome to our website at freecash.com and the mobile application (collectively, "Website"). Taskbank GmbH ("Taskbank", "we", "us" or "our") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our Website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
+          <p className="chakra-text css-anezcv">Welcome to our website at freecash.com and the mobile application (collectively, &quot;Website&quot;). Taskbank GmbH (&quot;Taskbank&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our Website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.</p>
           <p className="chakra-text css-anezcv">This privacy policy is provided in a layered format so you can click through to the specific areas set out below. Please also use the Glossary to understand the meaning of some of the terms used in this privacy policy.</p>
           <ol role="list" className="css-13msht5 list-decimal pl-9">
             <li className="css-0">
@@ -55,7 +55,7 @@ const page = () => {
             <b>Purpose of this privacy policy</b>
           </p>
           <p className="chakra-text css-anezcv">This privacy policy aims to give you information on how Taskbank collects and processes your personal data through your use of this Website, including any data you may provide to us through this Website when you create an account, signup for our newsletter, use our content, use our services and support services, and receive marketing information.</p>
-          <p className="chakra-text css-anezcv">We do not direct our Website to minors and we do not knowingly collect personal data from children under 16 or as defined by local legal requirements. If we learn we have mistakenly or unintentionally collected or received personal data from a child without appropriate consent, we will delete it. If you believe we mistakenly or unintentionally collected any information from or about a child, please contact us at support@taskbank.com.</p>
+          <p className="chakra-text css-anezcv">We do not direct our Website to minors and we do not knowingly collect personal data from children under 16 or as defined by local legal requirements. If we learn we have mistakenly or unintentionally collected or received personal data from a child without appropriate consent, we will delete it. If you believe we mistakenly or unintentionally collected any information from or about a child, please contact us at support@taskbank.online.</p>
           <p className="chakra-text css-anezcv">It is important that you read this privacy policy together with any other privacy policy or fair processing policy we may provide on specific occasions when we are collecting or processing personal data about you so that you are fully aware of how and why we are using your data. This privacy policy supplements other notices and privacy policies and is not intended to override them.</p>
           <p className="chakra-text css-anezcv">
             <b>Controller</b>
@@ -66,7 +66,7 @@ const page = () => {
             <b>Contact details</b>
           </p>
           <p className="chakra-text css-anezcv">If you have any questions about this privacy policy or our privacy practices, please contact our DPO in the following ways:</p>
-          <p className="chakra-text css-cmu836 pl-9">Data Privacy Officer <br/>support@taskbank.com<br/>
+          <p className="chakra-text css-cmu836 pl-9">Data Privacy Officer <br/>support@taskbank.online<br/>
           </p>
           <p className="chakra-text css-anezcv">You have the right to make a complaint at any time with a data protection supervisory authority if you believe we have violated your privacy rights. We would, however, appreciate the chance to deal with your concerns before you file your complaint.</p>
           <p className="chakra-text css-anezcv">
@@ -91,7 +91,7 @@ const page = () => {
           <p className="chakra-text css-anezcv">We may collect, use, store and transfer various kinds of personal data about you which we have categorized as follows:</p>
           <ul role="list" className="css-45agc2">
             <li className="css-0">
-              <b>Identity Data</b> includes first name, last name, username, telephone numbers, country of residence, gender, driver’s license, state ID, passport, passport card, permanent resident card, non-citizen travel document, visa, or similar identifier.
+              <b>Identity Data</b> includes first name, last name, username, telephone numbers, country of residence, gender, driver&#34;s license, state ID, passport, passport card, permanent resident card, non-citizen travel document, visa, or similar identifier.
             </li>
             <li className="css-0">
               <b>Contact Data</b> includes address, email address and telephone numbers.
@@ -300,7 +300,7 @@ const page = () => {
             <li className="css-0">Analytic providers to understand how you use our Website and services</li>
             <li className="css-0">Document repository service providers</li>
             <li className="css-0">Customer support vendors</li>
-            <li className="css-0">Survey to better understand users’ needs so we can improve the Website or services</li>
+            <li className="css-0">Survey to better understand users&#34; needs so we can improve the Website or services</li>
             <li className="css-0">Marketing analysis and statistics</li>
           </ul>
           <p className="chakra-text css-anezcv">
@@ -322,7 +322,7 @@ const page = () => {
       <div className="css-12cru54">
         <div className="chakra-stack css-m3jj3s">
           <p className="chakra-text css-anezcv">We operate in many countries, and we (or our service providers) may move your data and process it outside the country where you live. We use third-party service providers to process and store your information in the United States, the EU, and other countries. When we transfer your personal data to our affiliates outside the EU, we make use of standard contractual clauses (which have been approved by the European Commission) to help ensure your information is afforded a high standard of protection, and that your privacy rights can be vindicated.</p>
-          <p className="chakra-text css-anezcv">If you wish to obtain further details regarding the contractual arrangements we enter into to protect your personal data when it is transferred outside the EU, you may do so by emailing us via support@taskbank.com. You can also access the standard contractual clauses approved by the European Commission at: https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection/standard-contractual-clauses-scc_en.</p>
+          <p className="chakra-text css-anezcv">If you wish to obtain further details regarding the contractual arrangements we enter into to protect your personal data when it is transferred outside the EU, you may do so by emailing us via support@taskbank.online. You can also access the standard contractual clauses approved by the European Commission at: https://ec.europa.eu/info/law/law-topic/data-protection/international-dimension-data-protection/standard-contractual-clauses-scc_en.</p>
           <p className="chakra-text css-anezcv">Please contact see our Privacy Policy for EU Residents if you want further information on the specific mechanism used by us when transferring your personal data out of the EU &amp; UK</p>
         </div>
       </div>
@@ -368,7 +368,7 @@ const page = () => {
             <li className="css-0">Request transfer of your personal data.</li>
             <li className="css-0">Right to withdraw consent.</li>
           </ul>
-          <p className="chakra-text css-anezcv">To exercise the aforementioned data protection rights against us, please address your request, stating your first and last name, either by email to support@taskbank.com, or by post to Taskbank GmbH, Krausenstr. 9-10, 10117 Berlin, Germany. If you assert your rights against the controller, we will process your personal data in this context to respond to your request.</p>
+          <p className="chakra-text css-anezcv">To exercise the aforementioned data protection rights against us, please address your request, stating your first and last name, either by email to support@taskbank.online, or by post to Taskbank GmbH, Krausenstr. 9-10, 10117 Berlin, Germany. If you assert your rights against the controller, we will process your personal data in this context to respond to your request.</p>
           <p className="chakra-text css-anezcv">
             <b>No fee usually required</b>
           </p>
