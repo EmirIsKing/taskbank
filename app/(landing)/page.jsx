@@ -122,7 +122,7 @@ const Landing = () => {
               Here’s how  
               </span></h2>
               <div className='mt-14 max-md:hidden'>
-                <a href='/sign-up' className={`${poppins.className} mt-1 w-full px-11 hover:bg-green-500 active:opacity-55 transition-all py-3 h-14 text-xl rounded-lg bg-base-2 text-black font-semibold`}>
+                <a href='#' className={`${poppins.className} mt-1 w-full px-11 hover:bg-green-500 active:opacity-55 transition-all py-3 h-14 text-xl rounded-lg bg-base-2 text-black font-semibold`}>
                     Start earning now
                 </a>
               </div>           
@@ -164,7 +164,7 @@ const Landing = () => {
               <p className='text-blue-200 opacity-85'>For each task you complete, you’ll be rewarded with coins: 1000 coins = 
                 $1,00. Cashout the coins and get your hands on your free cash!
               </p>
-              <div className='w-full border-base-3 border-[2px] bg-[url("/images/complete.webp")] bg-cover rounded-lg h-[310px] max-md:bg-center'>
+              <div className='w-full border-base-3 border-[2px] bg-[url("/images/payment4.webp")] bg-center bg-no-repeat rounded-lg h-[310px] max-md:bg-center'>
               </div>
             </div>
           </div>

@@ -36,7 +36,8 @@ const SideBarItem = ({ index, link }) => {
 	
 
   return (
-    <div className={cn("pb-5 font-medium transition-all rounded-md", {
+    <>
+			<div className={cn("pb-5 font-medium transition-all rounded-md max-md:hidden", {
 							"text-base-2": color,
 							"text-base-2": background,
 							
@@ -56,6 +57,9 @@ const SideBarItem = ({ index, link }) => {
             <span className='w-[121px] text-left'>{link.label}</span>
           </Link>
     </div>
+
+		{/* Mobile side bar */}
+		</>
   )
 }
 

@@ -45,7 +45,7 @@ const ProviderCard = ({ provider }) => {
 							</div>
 			</Link>
 						{isOpen && (
-							<div className="bg-transparent flex shadow-none border-none absolute justify-center items-center top-10 left-0 w-full h-[90vh] border bg-white rounded-lg z-50">
+							<div className="bg-transparent flex shadow-none border-none absolute justify-center items-center top-10 left-0 w-full max-md:w-[70vw] max-md:left-14 h-[90vh] border bg-white rounded-lg z-50">
 								<div className='flex flex-col h-full'>
 									<div className='relative flex justify-between items-center px-5 bg-base-3 w-full py-2 rounded-t-lg'>
 										<span className='text-2xl font-bold'>{provider.iframeName}</span>
@@ -59,7 +59,7 @@ const ProviderCard = ({ provider }) => {
 									<div className='w-full h-full rounded-b-lg bg-base-3'>
 										<iframe
 										src={provider.iframeSrc}
-										className="w-[600px] h-[98%]"
+										className="w-[600px] h-[98%] max-md:w-[95vw]"
 									></iframe>
 									</div>
 								</div>

@@ -20,11 +20,12 @@ const providers = [
       <span>
         <h1 className='font-medium text-xl text-blue-200 opacity-85'>Click on any of our providers to start a task</h1>
       </span>
-      <div className='flex w-full py-2'>
-        {providers.map((provider, index)=>
-          (<ProviderCard key={index} provider={provider}/>)
-        )}
+      <div className="grid grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full py-2 max-md:mt-3 max-md:pl-3">
+        {providers.map((provider, index) => (
+          <ProviderCard key={index} provider={provider} />
+        ))}
       </div>
+
     </div>
   )
 }

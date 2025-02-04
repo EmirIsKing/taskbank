@@ -5,6 +5,8 @@ import MyOffersSvg from '../public/images/myoffers.svg'
 import CashoutSvg from '../public/images/cashout.svg'
 import AffiliatesSvg from '../public/images/affiliates.svg'
 import SideBarItem from './SideBarItem'
+import Image from 'next/image'
+import MobileSideBarItem from './MobileSideBarItem'
 
 const DashboardSideBar = () => {
 
@@ -17,11 +19,23 @@ const DashboardSideBar = () => {
 
 
   return (
-    <div className='h-full bg-base-3 flex flex-col pt-20 px-2 text-blue-200 text-opacity-85'>
+    <>
+      <div className='h-full bg-base-3 flex flex-col pt-20 px-2 text-blue-200 text-opacity-85 max-md:hidden'>
       {sidebarLinks.map((link, index)=>(
         <SideBarItem key={index} link={link} index={index}/>
       ))}
-    </div>
+      </div>
+
+
+      {/* Mobile side bar */}
+
+      
+      <div className='hidden max-md:flex fixed w-full bottom-0 left-0 justify-evenly bg-base-4 z-50'>
+      {sidebarLinks.map((link, index)=>(
+        <MobileSideBarItem key={index} link={link}/>
+      ))}
+      </div>
+    </>
   )
 }
 
