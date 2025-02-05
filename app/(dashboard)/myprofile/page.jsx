@@ -7,6 +7,7 @@ import SupportSvg from "@/public/images/support.svg"
 import UserProfileButton from '@/components/UserProfileButton'
 import ProfiileDP from '@/components/ProfiileDP'
 import UserFirstName from '@/components/UserFirstName'
+import { SignOutButton } from '@clerk/nextjs'
 
 const page = () => {
 
@@ -18,10 +19,12 @@ const page = () => {
       
       <div className='flex justify-between items-center px-3'>
         <span className='text-2xl font-bold'>My Profile</span>
-        <UserProfileButton/>
+        <div className='gap-4 flex px-3'>
+          <UserProfileButton/>
+        </div>
       </div>
       <div className='flex p-4 rounded-lg items-center gap-7'>
-        <div className='flex gap-5 p-7 bg-base-1 rounded-lg justify-center items-center'>
+        <div className='flex gap-5 p-7 bg-base-1 rounded-lg justify-center items-center pr-10'>
           <ProfiileDP width={155} height={155}/>
           <UserFirstName/>
         </div>
