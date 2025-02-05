@@ -1,11 +1,20 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import SettingSvg from '@/public/images/settings.svg'
 import BagSvg from "@/public/images/earnings-mobile.svg"
 import WithdrawSvg from "@/public/images/withdrawals-mobile.svg"
 import SupportSvg from "@/public/images/support.svg"
+import UserProfileButton from '@/components/UserProfileButton'
+import { useClerk } from '@clerk/nextjs'
+
 
 const page = () => {
+
+
+  const { user } = useClerk();
+  const profileImageUrl = user?.imageUrl || '/images/default-profile.png';
+
   return (
     <>
     {/* Desktop my profile page */}
@@ -13,15 +22,16 @@ const page = () => {
       
       <div className='flex justify-between items-center px-3'>
         <span className='text-2xl font-bold'>My Profile</span>
-        <button className='text-base-2 font-semibold flex justify-center items-center gap-2'>
-          <SettingSvg className="w-5 h-5"/>
-          Settings
-        </button>
+        <UserProfileButton/>
       </div>
       <div className='flex p-4 rounded-lg items-center gap-7'>
         <div className='flex gap-5 p-7 bg-base-1 rounded-lg justify-center items-center'>
-          <div className='bg-green-800 text-white rounded-full p-14 px-16 text-5xl'>E</div>
-          <span className='text-2xl font-semibold'>Emir</span>
+        <img
+                  src={profileImageUrl} // Use the fallback URL here
+                  alt="Profile Image"
+                  style={{ width: 155, height: 155, borderRadius: '50%' }}
+                />
+          <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
         </div>
         <div className='flex flex-col p-9 gap-10 rounded-lg bg-base-1'>
           <div className='flex gap-10'>
@@ -109,9 +119,13 @@ const page = () => {
       </div>
       <div className='flex w-full items-center gap-7 border-b border-blue-200 border-opacity-55'>
         <div className='flex gap-5 py-5 px-3  rounded-lg justify-center items-center'>
-          <div className='bg-green-800 text-white rounded-full p-7 px-8 text-5xl'>E</div>
+        <img
+                  src={profileImageUrl} // Use the fallback URL here
+                  alt="Profile Image"
+                  style={{ width: 32, height: 32, borderRadius: '50%' }}
+                />
           <div className='flex flex-col'>
-          <span className='text-2xl font-semibold'>Emir</span>
+          <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
           <div className='flex gap-10'>
             <div className='flex justify-center items-center gap-3'>
               <div className='flex justify-center items-center'>

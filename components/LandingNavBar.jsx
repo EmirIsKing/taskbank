@@ -1,8 +1,8 @@
 import React from 'react'
 import Logo from './Logo'
-import Image from 'next/image'
 import Cashout from '../public/images/cashout.svg'
 import Earn from '../public/images/earn.svg'
+import LandingNavSignIn from './LandingNavSignIn'
 
 const LandingNavBar = () => {
   return (
@@ -21,14 +21,9 @@ const LandingNavBar = () => {
               </div>
               Cashout</a>
         </div>
-        <div className='w-full flex items-center justify-end gap-5 pr-10 max-md:gap-1 max-md:pr-3'>
-            <a href='#' className='text-white font-bold transition-all px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-opacity-30 bg-gray-300 bg-opacity-20 border-gray-500 border rounded-sm '>
-                Sign In
-            </a>
-            <a href='#' className="bg-base-2 transition-all font-bold px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-green-500 rounded-sm">Sign Up</a>
-        </div>
+        <LandingNavSignIn/>
     </div>
   )
 }
 
-export default LandingNavBar
+export default LandingNavBar;

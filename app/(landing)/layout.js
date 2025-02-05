@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "../globals.css";
-import LandingNavBar from "@/components/LandingNavBar";
-import { ReactLenis } from 'lenis/react'
+import { ReactLenis } from 'lenis/react';
+import LandingNavBar from "../../components/LandingNavBar";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",

@@ -1,6 +1,14 @@
 import "./globals.css";
-import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react"
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+
+export const viewport = "width=device-width, initial-scale=1";
 
 export const metadata = {
   title: "TaskBank",
@@ -12,14 +20,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Analytics/>
-      </Head>
-      <body>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Analytics/>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
