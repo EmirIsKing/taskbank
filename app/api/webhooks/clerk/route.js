@@ -2,7 +2,8 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/utils/firebase/clientApp";  // Ensure this is correctly set up and points to your Firestore database
 
 export async function POST(req) {
@@ -12,7 +13,7 @@ export async function POST(req) {
     throw new Error('Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local');
   }
 
-  console.log('check 1');
+  console.log('check 1')
 
   const headerPayload = headers();
   const svix_id = headerPayload.get('svix-id');
@@ -25,7 +26,8 @@ export async function POST(req) {
     });
   }
 
-  console.log('check 2');
+  console.log('check 2')
+
 
   const payload = await req.json();
   const body = JSON.stringify(payload);
@@ -46,7 +48,8 @@ export async function POST(req) {
     });
   }
 
-  console.log('check 3');
+  console.log('check 3')
+
 
   const { id } = evt.data;
   const eventType = evt.type;
@@ -64,17 +67,22 @@ export async function POST(req) {
       offers: [],
       referrals: [],
       notification: [{
-        date: new Date(),
+        date: new Date,
         message: `Welcome to Taskbank, ${first_name}! 🎉 We're thrilled to have you on board. Ready to start earning rewards by completing simple tasks? You're just a few steps away from unlocking exciting opportunities to make money in your spare time.`
       }],
     };
 
-    console.log('check 4');
+    console.log('check 4')
+
+
+    console.log('Creating new user');
 
     try {
       // Firestore: Create a new user document
       const userDocRef = doc(db, 'users', id); // Use Clerk ID as the document ID
       await setDoc(userDocRef, user);
+
+      
 
       // Update Clerk user metadata with Firestore document ID
       await clerkClient.users.updateUserMetadata(id, {
@@ -95,7 +103,8 @@ export async function POST(req) {
     }
   }
 
-  console.log('check 5');
+  console.log('check 5')
+
 
   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
 
