@@ -94,5 +94,5 @@ export async function POST(req) {
 
   console.log(`Webhook with an ID of ${id} and type of ${eventType}`);
 
-  return new Response('', { status: 200 });
+  return new Response('Done', { status: 200 });
 }
