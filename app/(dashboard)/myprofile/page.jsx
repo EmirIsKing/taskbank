@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import Image from 'next/image'
 import SettingSvg from '@/public/images/settings.svg'
@@ -6,14 +5,10 @@ import BagSvg from "@/public/images/earnings-mobile.svg"
 import WithdrawSvg from "@/public/images/withdrawals-mobile.svg"
 import SupportSvg from "@/public/images/support.svg"
 import UserProfileButton from '@/components/UserProfileButton'
-import { useClerk } from '@clerk/nextjs'
-
+import ProfiileDP from '@/components/ProfiileDP'
 
 const page = () => {
 
-
-  const { user } = useClerk();
-  const profileImageUrl = user?.imageUrl || '/images/default-profile.png';
 
   return (
     <>
@@ -26,11 +21,7 @@ const page = () => {
       </div>
       <div className='flex p-4 rounded-lg items-center gap-7'>
         <div className='flex gap-5 p-7 bg-base-1 rounded-lg justify-center items-center'>
-        <img
-                  src={profileImageUrl} // Use the fallback URL here
-                  alt="Profile Image"
-                  style={{ width: 155, height: 155, borderRadius: '50%' }}
-                />
+          <ProfiileDP width={155} height={155}/>
           <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
         </div>
         <div className='flex flex-col p-9 gap-10 rounded-lg bg-base-1'>
@@ -119,11 +110,7 @@ const page = () => {
       </div>
       <div className='flex w-full items-center gap-7 border-b border-blue-200 border-opacity-55'>
         <div className='flex gap-5 py-5 px-3  rounded-lg justify-center items-center'>
-        <img
-                  src={profileImageUrl} // Use the fallback URL here
-                  alt="Profile Image"
-                  style={{ width: 32, height: 32, borderRadius: '50%' }}
-                />
+          <ProfiileDP width={32} height={32}/>
           <div className='flex flex-col'>
           <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
           <div className='flex gap-10'>
