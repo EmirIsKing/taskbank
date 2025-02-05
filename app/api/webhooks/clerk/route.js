@@ -82,15 +82,6 @@ export async function POST(req) {
       const userDocRef = doc(db, 'users', id); // Use Clerk ID as the document ID
       await setDoc(userDocRef, user);
 
-      
-
-      // Update Clerk user metadata with Firestore document ID
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: id, // Firestore document ID is the same as Clerk ID in this case
-        },
-      });
-
       return new Response(JSON.stringify({ message: "New user created", user }), {
         status: 200,
         headers: { "Content-Type": "application/json" }
