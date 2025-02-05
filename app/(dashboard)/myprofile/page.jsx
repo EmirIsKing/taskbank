@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { db } from '@/lib/firebase'
+import { db } from '@/utils/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { useUser } from '@clerk/nextjs'
 import ReferralLink from '@/components/ReferralLink'
