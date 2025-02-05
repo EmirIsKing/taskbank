@@ -15,12 +15,6 @@ const poppins = Poppins({
 
 const LandingSignUp = () => {
   const { signUp, setActive, isLoaded } = useSignUp();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [openPass, setOpenPass] = useState(true);
-  const [pendingVerification, setPendingVerification] = useState(false);
-  const [code, setCode] = useState("");
   const { signIn } = useSignIn();
   const { openSignIn, openSignUp } = useClerk();
 
