@@ -1,5 +1,10 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { db } from '@/lib/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { useUser } from '@clerk/nextjs'
+import ReferralLink from '@/components/ReferralLink'
 import SettingSvg from '@/public/images/settings.svg'
 import BagSvg from "@/public/images/earnings-mobile.svg"
 import WithdrawSvg from "@/public/images/withdrawals-mobile.svg"
@@ -10,7 +15,34 @@ import UserFirstName from '@/components/UserFirstName'
 import { SignOutButton } from '@clerk/nextjs'
 
 const page = () => {
+  const { user } = useUser();
+  const [referralStats, setReferralStats] = useState({
+    referralCode: '',
+    referralCount: 0,
+    referralEarnings: 0
+  });
 
+  useEffect(() => {
+    const fetchReferralStats = async () => {
+      if (!user?.id) return;
+      
+      try {
+        const userDoc = await getDoc(doc(db, 'users', user.id));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          setReferralStats({
+            referralCode: data.referralCode || '',
+            referralCount: data.referralCount || 0,
+            referralEarnings: data.referralEarnings || 0
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching referral stats:', error);
+      }
+    };
+
+    fetchReferralStats();
+  }, [user?.id]);
 
   return (
     <>
@@ -72,6 +104,38 @@ const page = () => {
 
         </div>
       </div>
+
+      {/* Referral Section */}
+      <div className='flex flex-col gap-5'>
+        <div className='flex'><span className='bg-base-2 bg-opacity-10 p-3 rounded-md text-base-2'>Referrals</span></div>
+        <div className='flex flex-col gap-5'>
+          <ReferralLink referralCode={referralStats.referralCode} />
+          <div className='flex gap-6 p-4 bg-base-1 rounded-lg'>
+            <div className='flex items-center gap-3'>
+              <div className='bg-base-2 w-[51px] h-[51px] rounded-lg bg-opacity-10 flex justify-center items-center'>
+                <Image src={'/images/reffered.svg'} alt='referrals' width={30} height={30} />
+              </div>
+              <div className='flex flex-col'>
+                <span className='font-bold text-white text-xl'>{referralStats.referralCount}</span>
+                <h1 className='text-base text-blue-200 text-opacity-85'>Total Referrals</h1>
+              </div>
+            </div>
+            <div className='flex items-center gap-3'>
+              <div className='bg-base-2 w-[51px] h-[51px] rounded-lg bg-opacity-10 flex justify-center items-center'>
+                <Image src={'/images/wallet.svg'} alt='earnings' width={30} height={30} />
+              </div>
+              <div className='flex flex-col'>
+                <span className='font-bold text-white flex gap-1 text-xl'>
+                  <span className='text-base-2 font-bold'>$</span>
+                  {referralStats.referralEarnings.toFixed(2)}
+                </span>
+                <h1 className='text-base text-blue-200 text-opacity-85'>Referral Earnings</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className='flex flex-col gap-5' id='withdrawals'>
         <div className='flex '><span className='bg-base-2 bg-opacity-10 p-3 rounded-md text-base-2'>Withdrawals</span></div>
         <div className='flex justify-start items-center gap-2'>
@@ -154,6 +218,13 @@ const page = () => {
         <span className='flex gap-2 justify-center items-center'>
           <SupportSvg className="text-white w-5 h-5"/>
           Support</span>
+        <span className='text-2xl'>→</span>
+       </a>
+       <a className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
+        <span className='flex gap-2 justify-center items-center'>
+          <Image src={'/images/reffered.svg'} alt='referrals' width={20} height={20} className="text-white"/>
+          Referrals ({referralStats.referralCount})
+        </span>
         <span className='text-2xl'>→</span>
        </a>
       </div>
