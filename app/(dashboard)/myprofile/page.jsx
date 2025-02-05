@@ -6,6 +6,7 @@ import WithdrawSvg from "@/public/images/withdrawals-mobile.svg"
 import SupportSvg from "@/public/images/support.svg"
 import UserProfileButton from '@/components/UserProfileButton'
 import ProfiileDP from '@/components/ProfiileDP'
+import UserFirstName from '@/components/UserFirstName'
 
 const page = () => {
 
@@ -22,7 +23,7 @@ const page = () => {
       <div className='flex p-4 rounded-lg items-center gap-7'>
         <div className='flex gap-5 p-7 bg-base-1 rounded-lg justify-center items-center'>
           <ProfiileDP width={155} height={155}/>
-          <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
+          <UserFirstName/>
         </div>
         <div className='flex flex-col p-9 gap-10 rounded-lg bg-base-1'>
           <div className='flex gap-10'>
@@ -112,7 +113,7 @@ const page = () => {
         <div className='flex gap-5 py-5 px-3  rounded-lg justify-center items-center'>
           <ProfiileDP width={32} height={32}/>
           <div className='flex flex-col'>
-          <span className='text-2xl font-semibold'>{user?.firstName || 'User'}</span>
+          <UserFirstName/>
           <div className='flex gap-10'>
             <div className='flex justify-center items-center gap-3'>
               <div className='flex justify-center items-center'>
