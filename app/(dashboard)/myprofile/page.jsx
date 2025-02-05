@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { db } from "@/utils/firebase/clientApp"; 
@@ -14,7 +14,7 @@ import ProfiileDP from '@/components/ProfiileDP'
 import UserFirstName from '@/components/UserFirstName'
 import { SignOutButton } from '@clerk/nextjs'
 
-const page = () => {
+const Page = () => {
   const { user } = useUser();
   const [referralStats, setReferralStats] = useState({
     referralCode: '',
@@ -235,4 +235,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;
