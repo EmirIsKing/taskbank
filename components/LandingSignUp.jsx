@@ -20,15 +20,11 @@ const LandingSignUp = () => {
   const [openPass, setOpenPass] = useState(true);
   const [pendingVerification, setPendingVerification] = useState(false);
   const [code, setCode] = useState("");
-
-
-  if (!isLoaded) return <p className="text-xl font-bold text-white">Loading...</p>;
-
   const { signIn } = useSignIn();
   
+if (!isLoaded) return <p className="text-xl font-bold text-white">Loading...</p>;
+
 const handleGoogleSignUp = async () => {
-      // Accessing the useSignIn hook
-    
     try {
       // Start the Google OAuth flow with redirect
       await signIn.authenticateWithRedirect({
