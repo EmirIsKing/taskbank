@@ -70,10 +70,10 @@ export async function POST(req) {
       firstName: firstName,
       lastName: lastName,
       reward: 0,
-      referrals: [],
       referralCode,
       referredBy: referredByCode,
       referralCount: 0,
+      dateJoined: new Date(),
       referralEarnings: 0,
       notification: [
         {
@@ -99,7 +99,7 @@ export async function POST(req) {
 
           await updateDoc(doc(db, "users", referrerDoc.id), {
             referralCount: increment(1),
-            referralEarnings: increment(5),
+            referralEarnings: increment(0.10)
           });
 
           await addDoc(collection(db, "referrals"), {

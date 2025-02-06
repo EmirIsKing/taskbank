@@ -4,6 +4,8 @@ import { useUser } from '@clerk/nextjs'
 import { getReferralDetails } from '@/utils/actions/referral'
 import ReferralLink from '@/components/ReferralLink'
 import Image from 'next/image'
+import Usersvg from '@/public/images/users.svg'
+import PercentSvg from '@/public/images/percent.svg'
 
 const Page = () => {
   const { user } = useUser()
@@ -24,26 +26,23 @@ const Page = () => {
   if (!referralDetails) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-base-2"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-base-2 flex justify-center items-center">
+          <Image src={'/images/coin3.webp'} width={30} height={30} alt='coin' className='spin-clockwise'/>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-white">Affiliate Dashboard</h1>
+      <h1 className="text-2xl font-bold text-white pl-8">Affiliate Dashboard</h1>
       
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-base-1 p-4 rounded-lg">
           <div className="flex items-center gap-3">
             <div className="bg-base-2 bg-opacity-10 p-2 rounded-md">
-              <Image 
-                src="/images/users.svg" 
-                alt="Referrals" 
-                width={24} 
-                height={24}
-              />
+              <Usersvg className="w-6 h-6 text-base-2"/>
             </div>
             <div>
               <p className="text-sm text-blue-200">Total Referrals</p>
@@ -56,7 +55,7 @@ const Page = () => {
           <div className="flex items-center gap-3">
             <div className="bg-base-2 bg-opacity-10 p-2 rounded-md">
               <Image 
-                src="/images/dollar.svg" 
+                src="/images/wallet.svg" 
                 alt="Earnings" 
                 width={24} 
                 height={24}
@@ -72,16 +71,11 @@ const Page = () => {
         <div className="bg-base-1 p-4 rounded-lg">
           <div className="flex items-center gap-3">
             <div className="bg-base-2 bg-opacity-10 p-2 rounded-md">
-              <Image 
-                src="/images/rate.svg" 
-                alt="Rate" 
-                width={24} 
-                height={24}
-              />
+              <PercentSvg className="w-6 h-6 text-base-2"/>
             </div>
             <div>
               <p className="text-sm text-blue-200">Reward Rate</p>
-              <p className="text-xl font-bold text-white">$5 / referral</p>
+              <p className="text-xl font-bold text-white">$0.10 / referral</p>
             </div>
           </div>
         </div>

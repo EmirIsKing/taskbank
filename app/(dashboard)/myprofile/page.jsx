@@ -154,14 +154,11 @@ const Page = () => {
             </tr>
           </thead>
           <tbody className='text-blue-200 text-opacity-85'>
-            <tr>
-              <td><p className='text-center overflow-hidden'>Litecoin</p></td>
-              <td><p className='text-center overflow-hidden'>$ 3.00</p></td>
-              <td><p className='text-center overflow-hidden'>hvfsbvhsfbvfhvbfhvfhuvbfhvbfvfbvfhvbdffvhsfvbfhv</p></td>
-              <td><p className='text-center overflow-hidden'>45425245</p></td>
-              <td><p className='text-center overflow-hidden'>02/02/2025</p></td>
-              <td><p className='text-center overflow-hidden'>Completed</p></td>
-            </tr>
+                <tr>
+                  <td colSpan="4" className="p-4 text-center text-blue-200">
+                    No referrals yet
+                  </td>
+                </tr>
           </tbody>
 
         </table>

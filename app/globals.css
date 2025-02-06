@@ -94,4 +94,18 @@
   .chakra-icon {
     @apply text-blue-100 opacity-80;
   }
+
+  @keyframes spin-clockwise {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  .spin-clockwise {
+    animation: spin-clockwise 1s linear infinite;
+  }
+  
 }
