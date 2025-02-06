@@ -6,7 +6,9 @@ import LandingSignUp from '../../components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
-import HandleReferral from '@/components/HandleReferral';
+import dynamic from 'next/dynamic';
+
+const HandleReferral = dynamic(() => import('@/components/HandleReferral'), { ssr: false });
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
