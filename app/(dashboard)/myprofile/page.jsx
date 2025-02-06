@@ -25,8 +25,6 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [reward, setReward] = useState(0)
 
-  console.log("user id: ",userId);
-
   useEffect(() => {
     const unsubscribe = getDetails(userId, (data) => {
       if (data) { 
@@ -43,8 +41,6 @@ const Page = () => {
       }
     };
   }, [ userId ]); 
-
-  console.log("data: ", data);
   
   useEffect(() => {
     const fetchReferralStats = async () => {

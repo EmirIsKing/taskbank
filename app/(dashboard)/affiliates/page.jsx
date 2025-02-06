@@ -33,7 +33,6 @@ const Page = () => {
     )
   }
 
-  console.log(referralDetails)
 
   return (
     <div className="space-y-6">

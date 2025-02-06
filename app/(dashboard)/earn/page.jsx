@@ -1,5 +1,4 @@
-'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
 

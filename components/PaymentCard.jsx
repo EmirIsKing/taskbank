@@ -1,11 +1,36 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import ProgressBar from '@/components/ProgressBar'
 import UserSvg from "../public/images/users.svg"
 import CloseSvg from '@/public/images/close.svg'
+import getDetails from '@/utils/actions/getDetails'
+import { useAuth } from '@clerk/nextjs'
 
-const PaymentCard = ({ img, className, name, nameAdd}) => {
+const PaymentCard = ({ img, className, name, nameAdd, max, min}) => {
+
+
+	  const { userId } = useAuth();
+	  const [data, setData] = useState(null);
+	  
+	
+	  useEffect(() => {
+		const unsubscribe = getDetails(userId, (data) => {
+		  if (data) { 
+			setData(data);
+		  } else {
+			console.log("No data or error occurred");
+		  }
+		});
+	
+		return () => {
+		  if (unsubscribe) {
+			unsubscribe();
+		  }
+		};
+	  }, [userId])
+	  
+
 
 const [openForm, setOpenForm] = useState(false);
 const [value, setValue] = useState(0);
@@ -45,13 +70,13 @@ const text = name === "Mobile Money"
                 <Image src={img} width={40} height={40} alt={name}/>
               </div>
               <div>
-                <ProgressBar value={2+3} max={3+5} className={'h-2 bg-base-3'} indicatorclassName={'bg-white'}/>
+                <ProgressBar value={data?.referralCount + data?.referralEarnings + (data?.reward/1000)} max={6} className={'h-2 bg-base-3'} indicatorclassName={'bg-white'}/>
               </div>
               <div className='text-xs text-blue-200 opacity-80 w-full flex justify-between'>
-                <span>$2.00/$3.00</span>
+                <span>${data?.referralEarnings + (data?.reward/1000)}/$3.00</span>
                 <span className='flex gap-1 justify-center items-center'>
                   <UserSvg className="text-blue-200 text-opacity-80 w-3 h-3 font-bold"/>
-                  <span>3/5</span>
+                  <span>{data?.referralCount}/{max}</span>
                 </span>
               </div>
           </div>
@@ -96,7 +121,7 @@ const text = name === "Mobile Money"
 									value={value}
 									required
 								/>
-								<p className='text-blue-200 text-opacity-85 text-xs'>Minimum $3.00</p>
+								<p className='text-blue-200 text-opacity-85 text-xs'>Minimum ${min}</p>
 							</div>
 							<button type='submit' className='w-[629px] rounded-lg p-2 max-md:w-[300px] bg-base-2'>
 								Withdraw

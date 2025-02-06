@@ -96,18 +96,13 @@ export async function POST(req) {
         const q = query(usersRef, where("referralCode", "==", referredByCode));
         const querySnapshot = await getDocs(q);
     
-        console.log("check 1:", querySnapshot);
     
         if (querySnapshot) {
           const referrerDoc = querySnapshot.docs[0];
-    
-          console.log("check 2:", referrerDoc); // ✅ Corrected variable name
-    
+        
           const userDocRef = doc(db, "users", referrerDoc.id);
           const userDoc = await getDoc(userDocRef);
           const userInfo = userDoc.data();
-
-          console.log("check 3:", userInfo);
     
           await updateDoc(userDocRef, {
             referralCount: (userInfo.referralCount || 0) + 1,  // ✅ Ensures it exists
