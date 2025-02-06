@@ -48,9 +48,12 @@ export async function POST(req) {
       return new Response("Invalid user ID", { status: 400 });
     }
 
+    const client = await clerkClient();
+
+
     let user_data;
     try {
-      user_data = await clerkClient.users.getUser(id);
+      user_data = await client.users.getUser(id);
     } catch (error) {
       console.error("Error fetching user from Clerk:", error);
       return new Response("Error fetching user", { status: 500 });
