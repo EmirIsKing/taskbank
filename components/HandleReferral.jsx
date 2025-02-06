@@ -15,7 +15,7 @@ export default function HandleReferral() {
 
     if (referredByCode) {
       user.update({
-        privateMetadata: { referredBy: referredByCode }, // Store in Clerk user metadata
+        public_metadata: { referredBy: referredByCode }, // Store in Clerk user metadata
       })
       .then(() => {
         console.log("Referral code stored in user metadata");
