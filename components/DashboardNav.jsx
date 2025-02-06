@@ -9,7 +9,7 @@ const DashboardNav = () => {
   const { user, isLoaded } = useUser();
 
   // Fallback profile image if user.imageUrl is not available
-  const profileImageUrl = user?.imageUrl || "/images/default-profile.png";
+  const profileImageUrl = user?.imageUrl || "/images/coin3.webp";
 
   return (
     <div className="py-2 w-full fixed top-0 z-10 bg-base-1 bg-opacity-80 px-4 md:px-2">

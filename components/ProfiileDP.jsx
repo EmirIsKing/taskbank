@@ -7,7 +7,7 @@ import { useClerk } from '@clerk/nextjs'
 const ProfiileDP = ({ width, height }) => {
 
   const { user } = useClerk();
-  const profileImageUrl = user?.imageUrl || '/images/default-profile.png';
+  const profileImageUrl = user?.imageUrl || '/images/coin3.webp';
 
 
   return (
