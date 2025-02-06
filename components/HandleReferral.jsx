@@ -1,38 +1,30 @@
 "use client"; // Ensure this is a client-side component
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { useClerk } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation"; // Import from next/navigation
+import { useUser } from "@clerk/nextjs"; // useUser is better than useClerk
 
 export default function HandleReferral() { 
-  const { query } = useRouter(); // Capture query params
-  const { user } = useClerk(); // Access the logged-in Clerk user
-  const [isReady, setIsReady] = useState(false);
+  const searchParams = useSearchParams(); // Get URL parameters
+  const { user } = useUser(); // Get the current user
 
   useEffect(() => {
-    // Ensure that the router and Clerk user are ready
-    if (query && user) {
-      setIsReady(true);
+    if (!user) return; // Ensure the user is logged in before proceeding
+
+    const referredByCode = searchParams.get("ref"); // Get the "ref" query param
+
+    if (referredByCode) {
+      user.update({
+        privateMetadata: { referredBy: referredByCode }, // Store in Clerk user metadata
+      })
+      .then(() => {
+        console.log("Referral code stored in user metadata");
+      })
+      .catch(err => {
+        console.error("Error updating metadata:", err);
+      });
     }
-  }, [query, user]);
+  }, [searchParams, user]);
 
-  useEffect(() => {
-    if (isReady) {
-      const referredByCode = query.ref; // Get the referral code from the URL
-
-      if (referredByCode && user) {
-        // Store the referredByCode in the user's metadata
-        user.updateMetadata({
-          referredBy: referredByCode, // Storing the referral code in the user's metadata
-        }).then(() => {
-          console.log("Referral code stored in user metadata");
-        }).catch(err => {
-          console.error("Error updating metadata:", err);
-        });
-      }
-    }
-  }, [isReady, query, user]);
-
-  // This component doesn't need to return anything, so it simply handles the logic.
-  return null; // No HTML is returned
+  return null; // No UI needed
 }
