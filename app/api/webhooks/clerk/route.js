@@ -56,6 +56,7 @@ export async function POST(req) {
     try {
       user_data = await client.users.getUser(id);
       console.log('console user data:',user_data)
+      console.log(user_data.e)
     } catch (error) {
       console.error("Error fetching user from Clerk:", error);
       return new Response("Error fetching user", { status: 500 });
