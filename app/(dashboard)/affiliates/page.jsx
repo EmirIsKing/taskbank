@@ -63,7 +63,7 @@ const Page = () => {
             </div>
             <div>
               <p className="text-sm text-blue-200">Total Earnings</p>
-              <p className="text-xl font-bold text-white">${referralDetails.totalEarnings}</p>
+              <p className="text-xl font-bold text-white">${referralDetails.Earnings}</p>
             </div>
           </div>
         </div>
