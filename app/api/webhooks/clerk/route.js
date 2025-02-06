@@ -49,20 +49,20 @@ export async function POST(req) {
     }
 
     const client = await clerkClient();
-    console.log(client);
+    console.log('console client:',client);
 
 
     let user_data;
     try {
       user_data = await client.users.getUser(id);
-      console.log(user_data)
+      console.log('console user data:',user_data)
     } catch (error) {
       console.error("Error fetching user from Clerk:", error);
       return new Response("Error fetching user", { status: 500 });
     }
 
     const { email_addresses, username, first_name, last_name } = user_data.e;
-    console.log(email_addresses);
+    console.log('console email:',email_addresses);
     const referredByCode = user_data.publicMetadata.referredBy || null;
     const referralCode = generateReferralCode();
 
