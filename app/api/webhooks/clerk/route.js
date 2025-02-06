@@ -1,4 +1,4 @@
-import { clerkClient } from "@clerk/clerk-sdk-node"; // Ensure correct import
+import { clerkClient } from "@clerk/nextjs/dist/types/server"; // Ensure correct import
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { doc, setDoc, updateDoc, increment, query, where, getDocs, collection, addDoc } from "firebase/firestore"; 
