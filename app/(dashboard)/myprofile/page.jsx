@@ -108,7 +108,7 @@ const Page = () => {
                 <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{reward/1000 + data.referralEarnings}</span>
+                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{reward/1000 + data?.referralEarnings}</span>
                 <h1 className='text-base text-blue-200 text-opacity-85'>Total Earnings</h1>
               </div>
             </div>
@@ -137,7 +137,7 @@ const Page = () => {
                   <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
                 </div>
                 <div className='flex flex-col'>
-                  <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{referralStats.referralEarnings.toFixed(2)}</span>
+                  <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{(referralStats.referralEarnings || 0).toFixed(2)}</span>
                   <h1 className='text-base text-blue-200 text-opacity-85'>Referral Earnings</h1>
                 </div>
             </div>
