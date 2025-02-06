@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Poppins, Rethink_Sans } from 'next/font/google'
-import LandingSignUp from '../../components/LandingSignUp';
+import LandingSignUp from '../../../components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
@@ -21,10 +21,11 @@ const rethinkSans = Rethink_Sans({
 });
 
 
-const Landing = () => {
+const Landing = ({ params }) => {
+
   return (
     <div className={`w-full justify-center ${poppins.className}`}>
-      <HandleReferral/>
+      <HandleReferral ref={params.ref}/>
       <section>
         <div className="relative w-full h-[320px] overflow-hidden">
           <div className="absolute inset-0 transform -rotate-6 bg-cover bg-center bg-[url('/images/hero-shadow.webp')]">
