@@ -25,7 +25,7 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [reward, setReward] = useState(0)
 
-  console.log(userId);
+  console.log("user id: ",userId);
 
   useEffect(() => {
     const unsubscribe = getDetails(userId, (data) => {
@@ -44,7 +44,7 @@ const Page = () => {
     };
   }, [ userId ]); 
 
-  console.log(data);
+  console.log("data: ", data);
   
   useEffect(() => {
     const fetchReferralStats = async () => {
