@@ -2,7 +2,7 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
-import { doc, setDoc, getDoc, updateDoc, increment } from "firebase/firestore"; 
+import { doc, setDoc, getDoc, updateDoc, increment, query, where, getDocs } from "firebase/firestore"; 
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/utils/firebase/clientApp";  // Ensure this is correctly set up and points to your Firestore database
 
@@ -67,9 +67,9 @@ export async function POST(req) {
   if (eventType === "user.created") {
     const { id, email_addresses, username, first_name, last_name } = evt.data;
     
-    // Extract referral code from the request if present
-    const searchParams = new URL(req.url).searchParams;
-    const referredByCode = searchParams.get('ref');
+    // Get referral code from user's public metadata
+    const user_data = await clerkClient.users.getUser(id);
+    const referredByCode = user_data.publicMetadata.referredBy || null;
     
     // Generate a unique referral code for the new user
     const referralCode = generateReferralCode();
@@ -130,7 +130,8 @@ export async function POST(req) {
             });
           }
         } catch (error) {
-          console.error("Error processing referral:", error);
+          console.error("Error processing referral:", error.message);
+          console.error("Full error:", error);
           // Continue with user creation even if referral processing fails
         }
       }

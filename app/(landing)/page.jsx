@@ -5,6 +5,7 @@ import LandingSignUp from '../../components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
+import HandleReferral from '@/components/HandleReferral';
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,6 +21,7 @@ const rethinkSans = Rethink_Sans({
 const Landing = () => {
   return (
     <div className={`w-full justify-center ${poppins.className}`}>
+      <HandleReferral/>
       <section>
         <div className="relative w-full h-[320px] overflow-hidden">
           <div className="absolute inset-0 transform -rotate-6 bg-cover bg-center bg-[url('/images/hero-shadow.webp')]">
