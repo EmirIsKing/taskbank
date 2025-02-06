@@ -4,7 +4,7 @@ import MyOffers from '@/components/MyOffers'
 import getDetails from '@/utils/actions/getDetails'
 import { useAuth } from '@clerk/nextjs'
 
-const page = () => {
+const Page = () => {
 
   const { userId } = useAuth();
   const [offers, setOffers] = useState([]);
@@ -41,4 +41,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
