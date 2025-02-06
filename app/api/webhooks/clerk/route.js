@@ -61,8 +61,7 @@ export async function POST(req) {
 
     const { emailAddresses, username, firstName, lastName } = user_data;
     const referredByCode = user_data.publicMetadata.referredBy || null;
-    let referralCode = "ref"
-     referralCode += generateReferralCode();
+    const referralCode = generateReferralCode();
 
     const user = {
       clerkId: id,

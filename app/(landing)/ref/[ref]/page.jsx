@@ -2,13 +2,13 @@
 import React from 'react'
 import Image from 'next/image'
 import { Poppins, Rethink_Sans } from 'next/font/google'
-import LandingSignUp from '../../../components/LandingSignUp';
+import LandingSignUp from '@/components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
-import dynamic from 'next/dynamic';
-
-const HandleReferral = dynamic(() => import('@/components/HandleReferral'), { ssr: false });
+import { useEffect } from "react";
+import { useUser } from "@clerk/nextjs"; // useUser is better than useClerk
+import { useParams } from "next/navigation";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -21,11 +21,21 @@ const rethinkSans = Rethink_Sans({
 });
 
 
-const Landing = ({ params }) => {
+const Ref = () => {
+
+const { ref } = useParams();
+
+console.log(ref)
+
+useEffect(() => {
+  if (ref) {
+    localStorage.setItem("referredby", ref);
+  }
+}, []);
+
 
   return (
     <div className={`w-full justify-center ${poppins.className}`}>
-      <HandleReferral ref={params.ref}/>
       <section>
         <div className="relative w-full h-[320px] overflow-hidden">
           <div className="absolute inset-0 transform -rotate-6 bg-cover bg-center bg-[url('/images/hero-shadow.webp')]">
@@ -270,4 +280,4 @@ const Landing = ({ params }) => {
   )
 }
 
-export default Landing
+export default Ref

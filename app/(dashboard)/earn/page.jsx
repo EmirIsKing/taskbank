@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
+import HandleReferral from '@/components/HandleReferral'
 
 const page = () => {
 
@@ -18,6 +19,7 @@ const providers = [
 
   return (
     <div className='w-full h-[80vh] text-white mt-24 justify-center items-center text-center'>
+      <HandleReferral/>
       <span>
         <h1 className='font-medium text-xl text-blue-200 opacity-85'>Click on any of our providers to start a task</h1>
       </span>
