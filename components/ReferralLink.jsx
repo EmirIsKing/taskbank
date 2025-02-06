@@ -5,7 +5,7 @@ import Image from 'next/image';
 const ReferralLink = ({ referralCode }) => {
   const [copied, setCopied] = useState(false);
   
-  const referralUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://taskbank.online'}?ref=${referralCode}`;
+  const referralUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://taskbank.online'}/${referralCode}`;
 
   const handleCopy = async () => {
     try {
