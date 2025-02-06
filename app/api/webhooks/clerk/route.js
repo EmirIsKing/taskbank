@@ -119,6 +119,7 @@ export async function POST(req) {
             referredId: id,
             referralCode: referredByCode,
             timestamp: new Date(),
+            rewardPaid: "Paid",
             status: "completed",
           };
     
