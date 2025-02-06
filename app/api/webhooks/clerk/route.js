@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server'
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { doc, setDoc, updateDoc, increment, query, where, getDocs, collection, addDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc, increment, query, where, getDocs, collection, addDoc, getDoc } from "firebase/firestore"; 
 import { db } from "@/utils/firebase/clientApp"; 
 
 function generateReferralCode(length = 8) {
@@ -87,31 +87,43 @@ export async function POST(req) {
 
     try {
       const userDocRef = doc(db, "users", id);
-      await setDoc(userDocRef, user);
-
+      await setDoc(userDocRef, user, { merge: true });  // ✅ Prevents overwriting
+    
       if (referredByCode) {
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("referralCode", "==", referredByCode));
         const querySnapshot = await getDocs(q);
-
+    
+        console.log("check 1:", querySnapshot);
+    
         if (!querySnapshot.empty) {
           const referrerDoc = querySnapshot.docs[0];
-
-          await updateDoc(doc(db, "users", referrerDoc.id), {
-            referralCount: increment(1),
-            referralEarnings: increment(0.10)
+    
+          console.log("check 1:", referrerDoc); // ✅ Corrected variable name
+    
+          const userDocRef = doc(db, "users", referrerDoc.id);
+          const userDoc = await getDoc(userDocRef);
+          const userInfo = userDoc.data();
+    
+          await updateDoc(userDocRef, {
+            referralCount: (userInfo.referralCount || 0) + 1,  // ✅ Ensures it exists
+            referralEarnings: (userInfo.referralEarnings || 0) + 0.10,
           });
-
-          await addDoc(collection(db, "referrals"), {
+    
+          const referralDocRef = doc(db, "referrals", id);
+    
+          const referralDoc = {
             referrerId: referrerDoc.id,
             referredId: id,
             referralCode: referredByCode,
             timestamp: new Date(),
             status: "completed",
-          });
+          };
+    
+          await setDoc(referralDocRef, referralDoc);
         }
       }
-
+    
       return new Response(JSON.stringify({ message: "User created", user }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -120,6 +132,7 @@ export async function POST(req) {
       console.error("Firestore error:", error);
       return new Response("Error creating user", { status: 500 });
     }
+    
   }
 
   console.log(`Webhook received: ${eventType}`);

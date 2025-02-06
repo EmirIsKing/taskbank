@@ -87,17 +87,17 @@ const Page = () => {
                   <Image src={'/images/reffered.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
                 </div>
                 <div className='flex flex-col'>
-                  <span className='font-bold text-white flex gap-1 text-xl'>0</span>
+                  <span className='font-bold text-white flex gap-1 text-xl'>{referralStats.referralCount}</span>
                   <h1 className='text-base text-blue-200 text-opacity-85'>Users referred</h1>
                 </div>
               </div>
               <div className='flex justify-center items-center gap-3'>
                 <div className='bg-base-2 w-[51px] h-[51px] rounded-lg bg-opacity-10 flex justify-center items-center'>
-                  <Image src={'/images/total-earned.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
+                  <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
                 </div>
                 <div className='flex flex-col'>
-                  <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>0.02</span>
-                  <h1 className='text-base text-blue-200 text-opacity-85'>Earnings last 30 days</h1>
+                  <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{referralStats.referralEarnings.toFixed(2)}</span>
+                  <h1 className='text-base text-blue-200 text-opacity-85'>Referral Earnings</h1>
                 </div>
             </div>
           </div>
@@ -110,29 +110,6 @@ const Page = () => {
         <div className='flex'><span className='bg-base-2 bg-opacity-10 p-3 rounded-md text-base-2'>Referrals</span></div>
         <div className='flex flex-col gap-5'>
           <ReferralLink referralCode={referralStats.referralCode} />
-          <div className='flex gap-6 p-4 bg-base-1 rounded-lg'>
-            <div className='flex items-center gap-3'>
-              <div className='bg-base-2 w-[51px] h-[51px] rounded-lg bg-opacity-10 flex justify-center items-center'>
-                <Image src={'/images/reffered.svg'} alt='referrals' width={30} height={30} />
-              </div>
-              <div className='flex flex-col'>
-                <span className='font-bold text-white text-xl'>{referralStats.referralCount}</span>
-                <h1 className='text-base text-blue-200 text-opacity-85'>Total Referrals</h1>
-              </div>
-            </div>
-            <div className='flex items-center gap-3'>
-              <div className='bg-base-2 w-[51px] h-[51px] rounded-lg bg-opacity-10 flex justify-center items-center'>
-                <Image src={'/images/wallet.svg'} alt='earnings' width={30} height={30} />
-              </div>
-              <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'>
-                  <span className='text-base-2 font-bold'>$</span>
-                  {referralStats.referralEarnings.toFixed(2)}
-                </span>
-                <h1 className='text-base text-blue-200 text-opacity-85'>Referral Earnings</h1>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
