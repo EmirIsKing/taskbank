@@ -6,10 +6,11 @@ import { useParams } from "next/navigation";
 
 export default function HandleReferral() { 
   const { user } = useUser(); // Get the current user
-  const referredby = localStorage.getItem("referredby");
+  
 
 
   useEffect(() => {
+    const referredby = localStorage.getItem("referredby");
     if (!user) return; // Ensure the user is logged in before proceeding
 
     console.log(ref)

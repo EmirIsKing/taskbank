@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Poppins } from "next/font/google";
 import { Checkbox } from "../components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import { useSignUp, useSignIn } from "@clerk/nextjs";
 import { useClerk } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
   
 
 const poppins = Poppins({
@@ -13,10 +14,22 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const LandingSignUp = () => {
+const LandingSignUp = ({ referredBy }) => {
   const { signUp, setActive, isLoaded } = useSignUp();
-  const { signIn } = useSignIn();
+  const { signIn, } = useSignIn();
   const { openSignIn, openSignUp } = useClerk();
+  const pathname = usePathname();
+
+  const [hidden, setHidden] = useState(false)
+  const [flex, setFlex] = useState(true)
+
+  useEffect(() => {
+    if (pathname.includes('/ref/')) {
+      setHidden(true);
+    }
+
+  }, [])
+  
 
 
 if (!isLoaded) return <p className="text-xl font-bold text-white justify-center items-center w-full text-center">Loading...</p>;
@@ -27,6 +40,7 @@ const handleGoogleSignUp = async () => {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",  // Google OAuth strategy
         redirectUrl: "/earn",      // Redirect after successful authentication
+        
       });
     } catch (error) {
       console.error("Error during Google sign-up:", error);
@@ -38,20 +52,30 @@ const handleGoogleSignUp = async () => {
       <p className="text-2xl font-bold">Sign up for free</p>
         <form className="flex flex-col w-full gap-3 justify-between">
           <button
-            onClick={() => openSignUp({ afterSignUpUrl: "/earn" })}
+            onClick={() => openSignUp({ afterSignUpUrl: "/earn" , unsafeMetadata: {referredby: referredBy}},)}
             type="button"
             className={`${poppins.className} hover:bg-green-500 active:opacity-70 transition-all mt-1 w-full h-12 rounded-lg bg-base-2 text-black font-bold`}
           >
             Start earning now
           </button>
         </form>
-      <div className="w-full flex justify-center gap-3 items-center text-slate-400">
+      <div className={cn("w-full justify-center gap-3 items-center text-slate-400", 
+        {
+          "flex": !hidden,
+          "hidden": hidden
+        }
+      )}>
         <div className="w-full h-[1px] bg-gradient-to-l from-slate-300 to-base-4"></div>
         OR
         <div className="w-full h-[1px] bg-gradient-to-l to-slate-300 from-base-4"></div>
       </div>
 
-      <div className="w-full">
+      <div className={cn("w-full", 
+        {
+          "flex": !hidden,
+          "hidden": hidden
+        }
+      )}>
         <button onClick={handleGoogleSignUp} className={`${poppins.className} mt-1 w-full h-12 rounded-lg bg-white hover:bg-slate-200 hover:opacity-85 active:opacity-70 text-black font-semibold`}>
           Sign Up with Google
         </button>

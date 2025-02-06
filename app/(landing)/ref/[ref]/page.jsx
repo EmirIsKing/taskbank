@@ -27,12 +27,6 @@ const { ref } = useParams();
 
 console.log(ref)
 
-useEffect(() => {
-  if (ref) {
-    localStorage.setItem("referredby", ref);
-  }
-}, []);
-
 
   return (
     <div className={`w-full justify-center ${poppins.className}`}>
@@ -108,7 +102,7 @@ useEffect(() => {
             </div>
           </div>
           <div className='w-[427px] max-lg:w-[500px] h-full max-md:w-auto'>
-            <LandingSignUp/>
+            <LandingSignUp referredBy={ref}/>
           </div>
         </div>
         <div className='w-full h-auto p-5 flex flex-grow mt-16 px-32 max-md:px-6 max-md:relative max-md:top-[-70px]'>
