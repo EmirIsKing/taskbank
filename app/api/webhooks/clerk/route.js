@@ -49,21 +49,17 @@ export async function POST(req) {
     }
 
     const client = await clerkClient();
-    console.log('console client:',client);
 
 
     let user_data;
     try {
       user_data = await client.users.getUser(id);
-      console.log('console user data:',user_data)
-      console.log(user_data.lastName)
     } catch (error) {
       console.error("Error fetching user from Clerk:", error);
       return new Response("Error fetching user", { status: 500 });
     }
 
     const { emailAddresses, username, firstName, lastName } = user_data;
-    console.log('console email:',emailAddresses);
     const referredByCode = user_data.publicMetadata.referredBy || null;
     const referralCode = generateReferralCode();
 
@@ -82,7 +78,7 @@ export async function POST(req) {
       notification: [
         {
           date: new Date(),
-          message: `Welcome to Taskbank, ${first_name}! 🎉 Ready to start earning?`,
+          message: `Welcome to Taskbank, ${firstName}! 🎉 We're thrilled to have you on board. Ready to start earning rewards by completing simple tasks? You're just a few steps away from unlocking exciting opportunities to make money in your spare time.`,
         },
       ],
     };
