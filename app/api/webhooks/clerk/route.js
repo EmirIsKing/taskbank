@@ -61,7 +61,7 @@ export async function POST(req) {
       return new Response("Error fetching user", { status: 500 });
     }
 
-    const { email_addresses, username, first_name, last_name } = user_data;
+    const { email_addresses, username, first_name, last_name } = user_data.e;
     console.log(email_addresses);
     const referredByCode = user_data.publicMetadata.referredBy || null;
     const referralCode = generateReferralCode();
