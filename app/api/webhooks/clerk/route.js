@@ -60,7 +60,7 @@ export async function POST(req) {
     }
 
     const { emailAddresses, username, firstName, lastName } = user_data;
-    const referredByCode = user_data.publicMetadata.referredBy || null;
+    const referredByCode = user_data.unsafeMetadata.referredby || null;
     const referralCode = generateReferralCode();
 
     const user = {
