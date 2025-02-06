@@ -25,6 +25,8 @@ const Page = () => {
   const [data, setData] = useState(null);
   const [reward, setReward] = useState(0)
 
+  console.log(userId);
+
   useEffect(() => {
     const unsubscribe = getDetails(userId, (data) => {
       if (data) { 
