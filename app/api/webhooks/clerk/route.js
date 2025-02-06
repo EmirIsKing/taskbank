@@ -73,6 +73,8 @@ export async function POST(req) {
       referralCode,
       referredBy: referredByCode,
       referralCount: 0,
+      offers: [],
+      withdrawal: [],
       dateJoined: new Date(),
       referralEarnings: 0,
       notification: [

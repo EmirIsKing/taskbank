@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { db } from "@/utils/firebase/clientApp"; 
 import { doc, getDoc } from 'firebase/firestore'
-import { useUser } from '@clerk/nextjs'
+import { useUser, useAuth } from '@clerk/nextjs'
 import ReferralLink from '@/components/ReferralLink'
 import SettingSvg from '@/public/images/settings.svg'
 import BagSvg from "@/public/images/earnings-mobile.svg"
@@ -12,16 +12,36 @@ import SupportSvg from "@/public/images/support.svg"
 import UserProfileButton from '@/components/UserProfileButton'
 import ProfiileDP from '@/components/ProfiileDP'
 import UserFirstName from '@/components/UserFirstName'
-import { SignOutButton } from '@clerk/nextjs'
+import getDetails from '@/utils/actions/getDetails';
 
 const Page = () => {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const [referralStats, setReferralStats] = useState({
     referralCode: '',
     referralCount: 0,
     referralEarnings: 0
   });
+  const { userId } = useAuth();
+  const [data, setData] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = getDetails(userId, (data) => {
+      if (data) { 
+        setData(data);
+      } else {
+        console.log("No data or error occurred");
+      }
+    });
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [ userId ]); 
+
+  console.log(data);
+  
   useEffect(() => {
     const fetchReferralStats = async () => {
       if (!user?.id) return;
@@ -43,6 +63,23 @@ const Page = () => {
 
     fetchReferralStats();
   }, [user?.id]);
+
+  if (!isLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-base-2 flex justify-center items-center">
+          <Image
+            src={"/images/coin3.webp"}
+            width={30}
+            height={30}
+            alt="coin"
+            className="spin-clockwise"
+          />
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -67,7 +104,7 @@ const Page = () => {
                 <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>0.32</span>
+                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{data.reward/1000 + data.referralEarnings}</span>
                 <h1 className='text-base text-blue-200 text-opacity-85'>Total Earnings</h1>
               </div>
             </div>
@@ -76,8 +113,8 @@ const Page = () => {
                 <Image src={'/images/completed.svg'} alt='completed' width={30} height={30} className='w-[30px] h-[30px]'/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'>4</span>
-                <h1 className='text-base text-blue-200 text-opacity-85'>Completed Offers</h1>
+                <span className='font-bold text-white flex gap-1 text-xl'>0</span>
+                <h1 className='text-base text-blue-200 text-opacity-85'>Offer Count</h1>
               </div>
             </div>
           </div>

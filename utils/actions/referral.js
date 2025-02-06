@@ -46,7 +46,7 @@ const recordReferral = async (referrerCode, referredUserId) => {
       referredId: referredUserId,
       timestamp: new Date(),
       status: 'active',
-      rewardPaid: false
+      rewardPaid: true
     };
     
     await addDoc(collection(db, 'referrals'), referralData);
@@ -95,7 +95,7 @@ const getReferralDetails = (userId, callback) => {
       const referralDetails = {
         referralCode: userData.referralCode || null,
         referralCount: userData.referralCount || 0,
-        totalEarnings: userData.totalReferralEarnings || 0,
+        totalEarnings: userData.referralEarnings || 0,
         referrals: referrals
       };
       
