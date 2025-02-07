@@ -57,7 +57,7 @@ const DashboardNav = () => {
                 />
               </div>
               <span className="text-white flex font-bold bg-green-400 bg-opacity-20 p-2 rounded-r-sm max-md:hidden">
-                $ {(data?.reward/1000) + data?.referralEarnings}
+                $ {((data?.reward/1000) + data?.referralEarnings).toFixed(2)}
               </span>
             </a>
 
