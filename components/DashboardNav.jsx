@@ -1,15 +1,37 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import Image from "next/image";
 import Bell from "../public/images/bell.svg";
 import { useUser } from "@clerk/nextjs";
+import getDetails from "@/utils/actions/getDetails";
+import { useAuth } from "@clerk/nextjs";
 
 const DashboardNav = () => {
   const { user, isLoaded } = useUser();
+  const { userId } = useAuth()
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = getDetails(userId, (data) => {
+      if (data) { 
+        setData(data);
+        setReward(data.reward);
+      } else {
+        console.log("No data or error occurred");
+      }
+    });
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [ userId ]); 
+  
 
   // Fallback profile image if user.imageUrl is not available
-  const profileImageUrl = user?.imageUrl || "/images/coin3.webp";
+  const profileImageUrl = user?.imageUrl || "/images/coin1.webp";
 
   return (
     <div className="py-2 w-full fixed top-0 z-10 bg-base-1 bg-opacity-80 px-4 md:px-2">
@@ -35,7 +57,7 @@ const DashboardNav = () => {
                 />
               </div>
               <span className="text-white flex font-bold bg-green-400 bg-opacity-20 p-2 rounded-r-sm max-md:hidden">
-                $0.32
+                {(data?.reward/1000) + data?.referralEarnings}
               </span>
             </a>
 
