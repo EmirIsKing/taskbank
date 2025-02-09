@@ -16,7 +16,7 @@ const providers = [
   }
 ]
 
-const page = () => {
+const Page = () => {
 
   const { isLoaded } = useUser();
 
@@ -41,4 +41,4 @@ const page = () => {
   )
 }
 
-export default page;
+export default Page;
