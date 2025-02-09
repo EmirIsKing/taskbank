@@ -27,7 +27,7 @@ const Page = () => {
   }
 
   return (
-    <div className='w-full h-[80vh] text-white mt-24 justify-center items-center text-center'>
+    <div className='w-full h-[70vh] text-white mt-24 justify-center items-center text-center'>
       <span>
         <h1 className='font-medium text-xl text-blue-200 opacity-85'>Choose any of our providers to start a task</h1>
       </span>
