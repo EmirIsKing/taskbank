@@ -13,7 +13,7 @@ const getDetails = (userId, callback) => {
         callback(null); // Or handle no document case
       }
     }, (error) => {
-      console.error("Error fetching balance:", error);
+      console.error("Error fetching details:", error);
       callback(null); // Handle error
     });
 
@@ -21,7 +21,7 @@ const getDetails = (userId, callback) => {
     return unsubscribe;
 
   } catch (error) {
-    console.error("Error fetching balance:", error);
+    console.error("Error fetching details:", error);
     return null; // Handle error
   }
 };

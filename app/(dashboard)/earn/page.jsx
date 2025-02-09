@@ -2,6 +2,8 @@
 import React from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
+import { useUser } from '@clerk/nextjs'
+import Loader from '@/components/Loader'
 
 
 const providers = [
@@ -15,6 +17,14 @@ const providers = [
 ]
 
 const page = () => {
+
+  const { isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return (
+      <Loader/>
+    )
+  }
 
   return (
     <div className='w-full h-[80vh] text-white mt-24 justify-center items-center text-center'>

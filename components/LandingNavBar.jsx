@@ -1,15 +1,27 @@
 'use client'
-import React from 'react'
+import Reac, { useEffect } from 'react'
 import Logo from './Logo'
 import Cashout from '../public/images/cashout.svg'
 import Earn from '../public/images/earn.svg'
 import LandingNavSignIn from './LandingNavSignIn'
-import { useClerk } from '@clerk/nextjs'
+import { useClerk, useUser } from '@clerk/nextjs'
 import { useParams } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 
 const LandingNavBar = ({ referredBy }) => {
 
+  const router = useRouter();
+  const { isSignedIn } = useUser();
+  
+ useEffect(() => {
+  
+  if (isSignedIn) {
+    router.push('/earn')
+  }
+
+ }, [isSignedIn])
+ 
 
   const { openSignUp } = useClerk();
   

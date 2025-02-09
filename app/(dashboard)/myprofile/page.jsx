@@ -24,12 +24,14 @@ const Page = () => {
   const { userId } = useAuth();
   const [data, setData] = useState(null);
   const [reward, setReward] = useState(0)
+  const [offers, setOffers] = useState([])
 
   useEffect(() => {
     const unsubscribe = getDetails(userId, (data) => {
       if (data) { 
         setData(data);
         setReward(data.reward);
+        setOffers(data?.offers || [])
       } else {
         console.log("No data or error occurred");
       }
@@ -104,7 +106,7 @@ const Page = () => {
                 <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className='w-[30px] h-[30px]'/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{reward/1000 + data?.referralEarnings}</span>
+                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{(reward/1000 + data?.referralEarnings).toFixed(2)}</span>
                 <h1 className='text-base text-blue-200 text-opacity-85'>Total Earnings</h1>
               </div>
             </div>
@@ -113,7 +115,7 @@ const Page = () => {
                 <Image src={'/images/completed.svg'} alt='completed' width={30} height={30} className='w-[30px] h-[30px]'/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'>0</span>
+                <span className='font-bold text-white flex gap-1 text-xl'>{offers?.length ?? 0}</span>
                 <h1 className='text-base text-blue-200 text-opacity-85'>Offer Count</h1>
               </div>
             </div>
@@ -189,7 +191,7 @@ const Page = () => {
       </div>
       <div className='flex w-full items-center gap-7 border-b border-blue-200 border-opacity-55'>
         <div className='flex gap-5 py-5 px-3  rounded-lg justify-center items-center'>
-          <ProfiileDP width={32} height={32}/>
+          <ProfiileDP width={70} height={70}/>
           <div className='flex flex-col'>
           <UserFirstName/>
           <div className='flex gap-10'>
@@ -198,14 +200,14 @@ const Page = () => {
                 <Image src={'/images/wallet.svg'} alt='wallet' width={30} height={30} className=''/>
               </div>
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>0.32</span>
+                <span className='font-bold text-white flex gap-1 text-xl'><span className='text-base-2 font-bold'>$</span>{(reward/1000 + data?.referralEarnings).toFixed(2)}</span>
                 <h1 className='text-xs text-blue-200 text-opacity-85'>Total Earnings</h1>
               </div>
             </div>
             <div className='flex justify-center items-center gap-3'>             
               <div className='flex flex-col'>
-                <span className='font-bold text-white flex gap-1 text-xl'>4</span>
-                <h1 className='text-xs text-blue-200 text-opacity-85'>Completed Offers</h1>
+                <span className='font-bold text-white flex gap-1 text-xl'>{offers?.length ?? 0}</span>
+                <h1 className='text-xs text-blue-200 text-opacity-85'>Offer Count</h1>
               </div>
             </div>
           </div>
@@ -213,12 +215,7 @@ const Page = () => {
         </div>
       </div>
       <div className='w-full mt-3 flex flex-col justify-center items-center px-2'> 
-       <a className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
-        <span className='flex gap-2 justify-center items-center'>
-          <BagSvg className="text-white w-5 h-5"/>
-          Earnings</span>
-        <span className='text-2xl'>→</span>
-       </a>
+
        <a href='/withdrawals' className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
         <span className='flex gap-2 justify-center items-center'>
           <WithdrawSvg className="text-white w-5 h-5"/> 
@@ -233,10 +230,9 @@ const Page = () => {
        </a>
        <a className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
         <span className='flex gap-2 justify-center items-center'>
-          <Image src={'/images/reffered.svg'} alt='referrals' width={20} height={20} className="text-white"/>
-          Referrals ({referralStats.referralCount})
-        </span>
-        <span className='text-2xl'>→</span>
+        <Image src={'/images/reffered.svg'} alt='referrals' width={20} height={20} className="text-white"/>
+          Referrals</span>
+        <span className='text-2xl pr-4 text-base-2 text-opacity-90'>{referralStats?.referralCount || 0}</span>
        </a>
       </div>
     </div>

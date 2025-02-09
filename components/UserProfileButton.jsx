@@ -10,8 +10,8 @@ const UserProfileButton = () => {
 
   return (
     <div className='flex gap-3 justify-center items-center'>
-      <div className='bg-white bg-opacity-15 p-2 font-bold rounded-md text-base-2'>
-        <SignOutButton/>
+      <div className='bg-white bg-opacity-20 p-2 font-bold rounded-md text-base-2 hover:bg-opacity-15 hover:text-opacity-85'>
+        <SignOutButton redirectUrl='/'/>
       </div>
         <SignedIn>
         <button

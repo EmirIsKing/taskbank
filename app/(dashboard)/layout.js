@@ -12,27 +12,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-  <body className="bg-base-4 w-full min-h-screen overflow-x-hidden">
-    <DashboardNav />
+    <section className="bg-base-4 w-full min-h-screen overflow-x-hidden">
+      <DashboardNav />
+      <div className="flex w-full min-h-screen">
+        
+        {/* Sidebar - Hidden on Mobile, Visible on Desktop */}
+        <aside className="">
+          <DashboardSideBar />
+        </aside>
 
-    <div className="flex w-full min-h-screen">
-      
-      {/* Sidebar - Hidden on Mobile, Visible on Desktop */}
-      <aside className="">
-        <DashboardSideBar />
-      </aside>
+        {/* Main Content - Ensures No Overflow */}
+        <main className="flex-1 p-4 max-md:p-0 w-full min-w-0 h-screen overflow-y-auto">
+          {children}
+        </main>
 
-      {/* Main Content - Ensures No Overflow */}
-      <main className="flex-1 p-4 max-md:p-0 w-full min-w-0 h-screen overflow-y-auto">
-        {children}
-      </main>
-
-    </div>
-  </body>
-</html>
-
-
-
+      </div>
+    </section>
   )
 }
