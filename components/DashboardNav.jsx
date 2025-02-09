@@ -100,7 +100,7 @@ const DashboardNav = () => {
           <div className="flex justify-center items-center w-full">
             <span className="text-2xl text-white font-bold">Notifications</span>
           </div>
-          <div className="max-h-72 overflow-y-auto flex flex-col gap-3 scrollbar-thin">
+          <div className="max-h-72 overflow-y-auto flex flex-col gap-3 thin-scrollbar pr-2">
             {notification && notification.length > 0 ? (
               notification.map((notify, index) => (
                 <div

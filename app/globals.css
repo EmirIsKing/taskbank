@@ -94,6 +94,16 @@
   .chakra-icon {
     @apply text-blue-100 opacity-80;
   }
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 4px; /* Change scrollbar width */
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #41384e; /* Scrollbar thumb color */
+    border-radius: 6px; /* Rounded corners */
+  }
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background-color: #262424; /* Scrollbar track color */
+  }
 
   @keyframes spin-clockwise {
     from {
