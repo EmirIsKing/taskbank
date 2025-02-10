@@ -6,6 +6,7 @@ import Bell from "../public/images/bell.svg";
 import { useUser } from "@clerk/nextjs";
 import getDetails from "@/utils/actions/getDetails";
 import { useAuth } from "@clerk/nextjs";
+import TawkToChatDashboard from "./Tawkto";
 
 const DashboardNav = () => {
   const { user, isLoaded } = useUser();
@@ -81,6 +82,7 @@ const DashboardNav = () => {
               </span>
             </a>
           </div>
+          <TawkToChatDashboard/>
 
           {/* Notification Bell */}
           <button onClick={()=>setToggleBell(!toggleBell)}  type="button" className="ml-2">
