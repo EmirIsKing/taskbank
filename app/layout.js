@@ -10,6 +10,9 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  alternates: {
+    canonical: "https://taskbank.online/",
+  },
 };
 
 export default function RootLayout({ children }) {

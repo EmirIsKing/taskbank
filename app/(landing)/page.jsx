@@ -33,9 +33,9 @@ const Landing = () => {
         </div>
         <div className="absolute top-0 gap-3 h-[320px] max-md:h-[200px] max-md:gap-1 w-full">
           <div className='pt-24 w-full h-full flex-col items-center justify-center'>
-            <div className="text-white mb-9 text-[3.2rem] font-bold text-center leading-snug max-md:text-2xl max-md:mb-4">
+            <h1 className="text-white mb-9 text-[3.2rem] font-bold text-center leading-snug max-md:text-2xl max-md:mb-4">
               <span className='text-base-2'>Get paid </span>for testing apps,<br/>games & surveys
-            </div>
+            </h1>
             <div className='text-blue-100 text-lg opacity-95 font-medium text-center max-md:text-sm'>Earn up to <span className='font-bold text-white'>$10.00</span> per offer</div>
           </div>          
         </div>

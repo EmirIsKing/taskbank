@@ -224,12 +224,6 @@ const Page = () => {
        </a>
        <a className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
         <span className='flex gap-2 justify-center items-center'>
-          <SupportSvg className="text-white w-5 h-5"/>
-          Support</span>
-        <span className='text-2xl'>→</span>
-       </a>
-       <a className='flex justify-between items-center text-xl w-full border-blue-200 border-opacity-55 border-t py-5 font-bold'>
-        <span className='flex gap-2 justify-center items-center'>
         <Image src={'/images/reffered.svg'} alt='referrals' width={20} height={20} className="text-white"/>
           Referrals</span>
         <span className='text-2xl pr-4 text-base-2 text-opacity-90'>{referralStats?.referralCount || 0}</span>
