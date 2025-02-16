@@ -2,21 +2,14 @@
 import React from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
-import { useUser } from '@clerk/nextjs'
+import { useUser, useAuth } from '@clerk/nextjs'
 import Loader from '@/components/Loader'
+import NotikLogo from '@/components/NotikLogo'
 
-
-const providers = [
-  {
-    name: "Bitlabs Offers",
-    image: BitlabsSvg,
-    iframeName: "Bitlabs",
-    iframeSrc: `https://web.bitlabs.ai/?uid=12345&token=2b557582-2d62-4083-975c-efa2cd7c3af1`
-
-  }
-]
 
 const Page = () => {
+
+  const { userId } = useAuth();
 
   const { isLoaded } = useUser();
 
@@ -25,6 +18,16 @@ const Page = () => {
       <Loader/>
     )
   }
+
+  const providers = [
+    {
+      name: "Notik",
+      image: NotikLogo,
+      iframeName: "Notik",
+      iframeSrc: `https://notik.me/coins?api_key=3aDTefZTCqzvZso73pLsfrlxbg5Rx8I8&pub_id=bz3rUe&app_id=wtrRrdzVLs&user_id=${userId}`
+  
+    }
+  ]
 
   return (
     <div className='w-full h-[70vh] text-white mt-24 justify-center items-center text-center'>
