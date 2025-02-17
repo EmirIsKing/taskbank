@@ -41,7 +41,7 @@ const Page = () => {
       <span>
         <h1 className='font-medium text-xl text-blue-200 opacity-85'>Choose any of our providers to start a task</h1>
       </span>
-      <div className="grid grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full py-2 max-md:mt-3 max-md:pl-3">
+      <div className="grid grid-cols-auto sm:grid-cols-2 md:grid-cols-3 lg:flex gap-4 py-2 max-md:mt-3 max-md:pl-3">
         {providers && providers.map((provider, index) => (
           <ProviderCard key={index} img={provider.image} iframeName={provider.iframeName} iframeSrc={provider.iframeSrc} name={provider.name}/>
         ))}

@@ -13,12 +13,12 @@ const ProviderCard = ({ img, iframeName, iframeSrc, name }) => {
 
 
   return (
-    <div>
+    <div className='w-32'>
 			<Link href="#"
 							onClick={(e) => {
 								e.preventDefault();
 								setIsOpen(!isOpen);
-							}} className='w-full py-7'>
+							}} className='w-32 py-7'>
 							<div className='w-32 h-56 flex flex-col bg-gradient-to-b from-base-3 to-[#1f1f6e] rounded-lg ' 
 							onMouseEnter={()=>{setBlur(true); setHidden(false);}} onMouseLeave={()=>{setBlur(false); setHidden(true);}}>
 								<div className='relative w-full h-full justify-center items-center flex flex-col'>
