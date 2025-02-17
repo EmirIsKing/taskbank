@@ -1,21 +1,22 @@
 import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore"; 
-import { db } from "@/utils/firebase/clientApp";
+import { db } from "@/utils/firebase/clientApp"; 
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req) {
+export async function GET(req, res) {
   try {
-    // ✅ Extract query parameters
+    // ✅ Extract query parameters using `req.nextUrl.searchParams`
+
+    
     const { searchParams } = new URL(req.url);
-    const user_id = searchParams.get("user_id");
+    const user_id = searchParams.get("userid");
     const offer_id = searchParams.get("offer_id");
     const offer_name = searchParams.get("offer_name");
     const payout = parseFloat(searchParams.get("payout")) || 0;
-    const timestamp = searchParams.get("timestamp");
-    const txn_id = searchParams.get("txn_id");
-    const conversion_ip = searchParams.get("conversion_ip");
-    const amount = parseFloat(searchParams.get("amount")) || 0;
-    const hash = searchParams.get("hash");
+    const timestamp = searchParams.get("date");
+    const txn_id = searchParams.get("transactionID");
+    const conversion_ip = searchParams.get("ip_address");
+    const amount = parseFloat(searchParams.get("user_amount")) || 0;
 
     if (!user_id) {
       return new Response(JSON.stringify({ error: "Missing user_id" }), { status: 400 });
@@ -39,7 +40,7 @@ export async function GET(req) {
         offers: [
           ...(userInfo.offers || []), // ✅ Ensure `offers` is always an array
           {
-            provider: "Notik",
+            provider: "Upwall",
             offerId: offer_id,
             offerName: offer_name,
             payout,
@@ -47,14 +48,13 @@ export async function GET(req) {
             transactionId: txn_id,
             ip: conversion_ip,
             amount,
-            hash,
           },
         ],
       });
     }
 
     return new Response(
-      JSON.stringify({ message: "Offer added - Notik", user_id }),
+      JSON.stringify({ message: "Offer added - Upwall", user_id }),
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -63,9 +63,10 @@ export async function GET(req) {
 
   } catch (error) {
     console.error("Firestore error:", error);
-    return new Response(JSON.stringify({ error: "Error adding offer - Notik" }), {
+    return new Response(JSON.stringify({ error: "Error adding offer - Upwall" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }
 }
+

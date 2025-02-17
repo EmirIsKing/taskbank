@@ -5,7 +5,7 @@ import BitlabsSvg from '@/public/images/bitlabs.svg'
 import { useUser, useAuth } from '@clerk/nextjs'
 import Loader from '@/components/Loader'
 import NotikLogo from '@/components/NotikLogo'
-
+import UpwallLogo from '@/components/UpwallLogo'
 
 const Page = () => {
 
@@ -25,6 +25,13 @@ const Page = () => {
       image: NotikLogo,
       iframeName: "Notik",
       iframeSrc: `https://notik.me/coins?api_key=3aDTefZTCqzvZso73pLsfrlxbg5Rx8I8&pub_id=bz3rUe&app_id=wtrRrdzVLs&user_id=${userId}`
+  
+    },
+    {
+      name: "Upwall",
+      image: UpwallLogo,
+      iframeName: "Upwall",
+      iframeSrc: `https://epicwall.net/wall/offers/884/743763/${userId}`
   
     }
   ]
