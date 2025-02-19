@@ -45,7 +45,7 @@ const ProviderCard = ({ img, iframeName, iframeSrc, name }) => {
 							</div>
 			</Link>
 						{isOpen && (
-							<div className="flex shadow-none border-none absolute justify-center items-center top-10 left-0 w-full max-md:w-[70vw] max-md:left-14 h-[92vh] border bg-black bg-opacity-30 rounded-lg z-50">
+							<div className="flex shadow-none border-none absolute justify-center items-center top-10 left-0 w-full max-md:w-[70vw] max-md:left-[57px] h-[92vh] border bg-black bg-opacity-30 rounded-lg z-50">
 								<div className='flex flex-col h-full'>
 									<div className='relative flex justify-between items-center px-5 bg-base-3 w-full py-2 rounded-t-lg'>
 										<span className='text-2xl font-bold'>{iframeName}</span>

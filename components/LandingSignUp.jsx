@@ -52,7 +52,7 @@ const handleGoogleSignUp = async () => {
       <p className="text-2xl font-bold">Sign up for free</p>
         <form className="flex flex-col w-full gap-3 justify-between">
           <button
-            onClick={() => openSignUp({ afterSignUpUrl: "/earn" , unsafeMetadata: {referredby: referredBy}},)}
+            onClick={() => openSignUp({ fallbackRedirectUrl: '/earn' , unsafeMetadata: {referredby: referredBy}},)}
             type="button"
             className={`${poppins.className} hover:bg-green-500 active:opacity-70 transition-all mt-1 w-full h-12 rounded-lg bg-base-2 text-black font-bold`}
           >

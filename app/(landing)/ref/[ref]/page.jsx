@@ -219,7 +219,7 @@ console.log(ref)
             h={12}/>
           </div>
         </div>
-        <div className="mt-16 text-white">
+        <div className="mt-16 text-white mb-3">
           <div className="w-full text-3xl text-center font-bold"><span>We&apos;re the #1 site to make money. <span className="text-base-2">Here&apos;s why</span></span></div>
           <div className='flex mt-5 gap-8 px-36 justify-center items-center max-md:flex-col max-md:px-4'>
             <div>
@@ -244,6 +244,9 @@ console.log(ref)
            </div>
           </div>
         </div>
+      </section>
+      <section>
+        <Faq/>
       </section>
       <footer className='w-full bg-base-1 py-14 mt-12'>
         <div className='w-full px-20 max-md:px-0 flex max-md:flex-col max-md:gap-7 text-blue-200 justify-between opacity-85'>

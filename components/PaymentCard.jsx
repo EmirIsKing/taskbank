@@ -6,8 +6,10 @@ import UserSvg from "../public/images/users.svg"
 import CloseSvg from '@/public/images/close.svg'
 import getDetails from '@/utils/actions/getDetails'
 import { useAuth } from '@clerk/nextjs'
+import { useToast } from "@/hooks/use-toast"
 
 const PaymentCard = ({ img, className, name, nameAdd, max, min}) => {
+	const { toast } = useToast();
 
 
 	  const { userId } = useAuth();
@@ -33,25 +35,47 @@ const PaymentCard = ({ img, className, name, nameAdd, max, min}) => {
 
 
 const [openForm, setOpenForm] = useState(false);
-const [value, setValue] = useState(0);
+const [value, setValue] = useState("3");
 const handleScroll = (e) => {
 	e.preventDefault(); // Prevents the page from scrolling
-	setValue((prev) => Math.max(0, prev + (e.deltaY < 0 ? 1 : -1))); // Increase on scroll up, decrease on scroll down
+	setValue((prev) => Math.max(Number(e.target.value), Number(prev) + (e.deltaY < 0 ? 1 : -1))); // Increase on scroll up, decrease on scroll down
 };
 
 const handleChange = (e) => {
-	setValue(Number(e.target.value));
+	const newValue = e.target.value;
+	setValue(newValue === "" ? "" : newValue);
 };
 
 const handleSubmit = (e) => {
-    e.preventDefault();
-	const formData = new FormData(e.target);
-	const data = [Object.fromEntries(formData.entries()), name];
-	
-	console.log("Submitted Data:", data);
-	setOpenForm(false);
-	setValue(0);
-  };
+    e.preventDefault(); // Prevent default first
+
+    // Ensure data values are not undefined
+    const barValue = Number(
+        (data?.referralCount || 0) + 
+        (data?.referralEarnings || 0) + 
+        ((data?.reward || 0) / 1000)
+    );
+
+    // Check eligibility
+    if (barValue !== 6) {
+        toast({
+            title: "Not eligible for withdrawal",
+            description: "You must complete the required actions before you can withdraw.",
+        });
+        return;
+    }
+
+    // Process form data
+    const formData = new FormData(e.target);
+    const formDataObject = Object.fromEntries(formData.entries());
+    
+    console.log("Submitted Data:", { ...formDataObject, name });
+
+    setOpenForm(false);
+    setValue(0);
+};
+
+
 
 const placeholder = name === "Mobile Money" 
 ? 'Mobile Money number'
@@ -63,7 +87,7 @@ const text = name === "Mobile Money"
 
   return (
     <>
-		<button onClick={() => setOpenForm(true)} className='bg-base-1 w-[220px] h-[200px] max-md:w-[300px] rounded-lg flex flex-col gap-3 hover:ring-1 hover:ring-base-2 pt-1'>
+		<button onClick={() => setOpenForm(true)} className={'bg-base-1 w-[220px] h-[200px] max-md:w-[300px] rounded-lg flex flex-col gap-3 hover:ring-1 hover:ring-base-2 pt-1'}>
           <h1 className='text-center font-bold w-full'>{name}</h1>
           <div className='px-3 flex flex-col gap-2 w-full'>
               <div className={`rounded-lg ${className} flex justify-center items-center h-[120px]`}>
@@ -113,17 +137,18 @@ const text = name === "Mobile Money"
 								<span className='font-semibold'>Amount in USD</span>
 								<input type="number" 
 									onWheel={handleScroll} 
-									onChange={handleChange} 
+									onChange={handleChange}
+									onClick={() => setValue("")}
 									name="Amount" 
 									id="Amount" 
 									className='w-[629px] p-3 max-md:w-[300px] bg-base-3 rounded-lg placeholder-opacity-85 appearance-none focus:outline-none' 
-									min={0} 
+									min={3} 
 									value={value}
 									required
 								/>
 								<p className='text-blue-200 text-opacity-85 text-xs'>Minimum ${min}</p>
 							</div>
-							<button type='submit' className='w-[629px] rounded-lg p-2 max-md:w-[300px] bg-base-2'>
+							<button className='w-[629px] rounded-lg p-2 max-md:w-[300px] bg-base-2'>
 								Withdraw
 							</button>
 						</div>

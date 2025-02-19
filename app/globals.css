@@ -104,6 +104,10 @@
   .thin-scrollbar::-webkit-scrollbar-track {
     background-color: #262424; /* Scrollbar track color */
   }
+  .grid-cols-auto {
+    display: grid;
+    grid-template-columns: auto;
+  }
 
   @keyframes spin-clockwise {
     from {

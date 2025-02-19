@@ -1,5 +1,6 @@
 import React from 'react'
 import PaymentCard from '@/components/PaymentCard'
+import Link from 'next/link';
 
 
 
@@ -27,7 +28,7 @@ const page = () => {
           <p className='text-blue-200 opacity-75 text-lg font-medium max-md:text-sm'>Redeem your Taskbank earnings directly to Mobile Money,
             <br/>Litecoin and more! Withdraw to your crypto wallet
             <br/>starting at just $3 and 3 referrals, and to Mobile Money starting at
-            <br/>$3 and 3 referrals!
+            <br/>$3 and 3 referrals! <Link href={"/faq#why-referrals-is-required"} className='text-base-2 text-sm'>  Why?</Link>
           </p>
         </div>
         <div className='flex flex-col'>

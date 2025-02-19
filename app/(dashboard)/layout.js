@@ -3,7 +3,7 @@ import DashboardNav from "@/components/DashboardNav"
 import DashboardSideBar from "@/components/DashboardSideBar"
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Dashboard - Earn Money',
   description: 'Make money playing games and doing tasks - Make Money Online',
   icons: {
     icon: "/favicon.ico",

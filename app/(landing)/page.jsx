@@ -6,6 +6,7 @@ import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
 import TawkToChat from '@/components/TawkToButton';
+import Faq from '@/components/Faq';
 
 
 const poppins = Poppins({
@@ -79,7 +80,7 @@ const Landing = () => {
               <div className='max-md:w-[108px] max-md:h-[173px] max-md:p-2 p-4 flex-col max-lg:w-[170px] w-[150.17px] bg-base-3 rounded-xl max-md:text-xs'>
                 <div className='flex-col w-full justify-center items-center'>
                   <Image alt='tiktok' src={'/images/tiktok.webp'} width={122.97} height={122.97} className='rounded-md max-md:w-[90px] max-md:h-[90px]'/>
-                  <p className='pt-1 w-full text-xs font-bold text-white'>Tiktock</p>
+                  <p className='pt-1 w-full text-xs font-bold text-white'>Tiktok</p>
                   <p className={`${poppins.className} mt-1 text-xs font-light text-blue-200 opacity-85`}>Sign up</p>
                   <div className='w-full mt-1 flex justify-between'>
                     <div className='flex justify-center items-center'>
@@ -173,7 +174,7 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className='mt-20 flex flex-col max-md:mt-7'>
+        <div className='mt-20 mb-3 flex flex-col max-md:mt-7'>
           <div className='w-full flex justify-center items-center'><span className='font-bold text-2xl w-full text-center text-white'>Best ways to earn</span></div>
           <div className='w-full flex justify-between gap-8 px-20 mt-5 max-md:flex-col max-md:gap-4 max-md:px-5'>
             <EarnCards 
@@ -238,6 +239,9 @@ const Landing = () => {
            </div>
           </div>
         </div>
+      </section>
+      <section>
+        <Faq/>
       </section>
       <footer className='w-full bg-base-1 py-14 mt-12'>
         <div className='w-full px-20 max-md:px-0 flex max-md:flex-col max-md:gap-7 text-blue-200 justify-between opacity-85'>
