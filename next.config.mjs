@@ -12,7 +12,7 @@ const nextConfig = {
               script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clerk.dev https://accounts.google.com https://clerk.taskbank.online https://www.taskbank.online https://*.clerk.com;
               worker-src 'self' blob:;
               connect-src 'self' https://*.clerk.dev https://accounts.google.com https://clerk.taskbank.online https://www.taskbank.online https://*.clerk.com;
-              img-src 'self' data: https://*.clerk.dev https://lh3.googleusercontent.com https://clerk.taskbank.online https://www.taskbank.online* https://*.clerk.com;
+              img-src 'self' data: https://*.clerk.dev https://lh3.googleusercontent.com https://clerk.taskbank.online https://www.taskbank.online * https://*.clerk.com;
               frame-src 'self' https://*.clerk.dev https://accounts.google.com https://clerk.taskbank.online https://www.taskbank.online https://*.clerk.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               font-src 'self' https://fonts.gstatic.com;
