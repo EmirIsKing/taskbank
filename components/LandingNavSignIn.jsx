@@ -30,8 +30,7 @@ const LandingNavSignIn = ({ referredBy }) => {
       {/* Sign Up Button */}
       <button
         onClick={() =>
-          openSignUp({
-            ...(referredBy && { unsafeMetadata: { referredBy } }),
+          openSignUp({...(referredBy && { unsafeMetadata: { referredBy } }),
           })
         }
         className="bg-base-2 transition-all font-bold px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-green-500 rounded-sm"
