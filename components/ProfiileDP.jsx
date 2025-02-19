@@ -12,7 +12,7 @@ const ProfiileDP = ({ width, height }) => {
 
 
   return (
-    <Image
+    <img
       src={profileImageUrl} // Use the fallback URL here
       alt="Profile Image"
       style={{ width: width, height: height, borderRadius: '50%' }}
