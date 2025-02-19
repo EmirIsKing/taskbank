@@ -76,41 +76,13 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta name="robots" content="index, follow" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.taskbank.online" />
-        <meta property="og:title" content="Task Bank | Make Money Online" />
-        <meta
-          property="og:description"
-          content="Earn real money online by completing tasks, surveys, and offers. Withdraw through Mobile Money, crypto, and more!"
-        />
-        <meta
-          property="og:image"
-          content="https://www.taskbank.online/coin-logo.png"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Task Bank | Make Money Online" />
-        <meta
-          name="twitter:description"
-          content="Earn money online by completing tasks, playing games, and referrals. Get paid through Mobile Money, Litecoin, and more."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.taskbank.online/coin-logo.png"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <section>
         <nav>
           <LandingNavBar />
         </nav>
         <ReactLenis root>{children}</ReactLenis>
-      </body>
-    </html>
+      </section>
   );
 }

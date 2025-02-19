@@ -81,8 +81,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <html lang="en">
         <head>
           <meta name="robots" content="index, follow" />
           <meta property="og:type" content="website" />
@@ -108,10 +107,11 @@ export default function RootLayout({ children }) {
           />
         </head>
         <body>
+        <ClerkProvider>
           <Analytics />
           {children}
+        </ClerkProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

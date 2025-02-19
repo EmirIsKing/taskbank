@@ -26,8 +26,6 @@ const Ref = () => {
 
 const { ref } = useParams();
 
-console.log(ref)
-
 
   return (
     <div className={`w-full justify-center ${poppins.className}`}>
