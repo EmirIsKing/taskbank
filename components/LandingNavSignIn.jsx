@@ -18,7 +18,7 @@ const LandingNavSignIn = ({ referredBy }) => {
       {/* Sign In Button */}
       {!hidden && (
         <button
-          onClick={() => openSignIn({ fallbackRedirectUrl: "/earn" })}
+          onClick={() => openSignIn()}
           className={cn(
             "text-white font-bold transition-all px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-opacity-30 bg-gray-300 bg-opacity-20 border-gray-500 border rounded-sm"
           )}
@@ -31,7 +31,6 @@ const LandingNavSignIn = ({ referredBy }) => {
       <button
         onClick={() =>
           openSignUp({
-            fallbackRedirectUrl: "/earn",
             ...(referredBy && { unsafeMetadata: { referredBy } }),
           })
         }
