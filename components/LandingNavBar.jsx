@@ -20,7 +20,7 @@ const LandingNavBar = ({ referredBy }) => {
     router.push('/earn')
   }
 
- }, [isSignedIn])
+ }, [isSignedIn, router])
  
 
   const { openSignUp } = useClerk();

@@ -71,7 +71,7 @@ const DashboardNav = () => {
               className="flex items-center bg-white bg-opacity-15 p-1 rounded-md max-md:rounded-full py-2 max-md:border max-md:px-3"
             >
               <div className="text-white max-md:bg-transparent px-1 flex items-center justify-center rounded-full">
-                <img
+                <Image
                   src={profileImageUrl} // Use the fallback URL here
                   alt="Profile Image"
                   style={{ width: 25, height: 25, borderRadius: "50%" }}

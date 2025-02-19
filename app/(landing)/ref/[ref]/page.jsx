@@ -9,6 +9,7 @@ import FooterLogo from '@/components/FooterLogo';
 import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs"; // useUser is better than useClerk
 import { useParams } from "next/navigation";
+import Faq from '@/components/Faq';
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],

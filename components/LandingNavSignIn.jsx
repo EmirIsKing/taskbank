@@ -15,7 +15,7 @@ const LandingNavSignIn = ({ referredBy }) => {
         setHidden(true);
       }
   
-    }, [])
+    }, [pathname])
 
 
   return (

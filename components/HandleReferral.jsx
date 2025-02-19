@@ -26,7 +26,7 @@ export default function HandleReferral() {
         console.error("Error updating metadata:", err);
       });
     }
-  }, []);
+  }, [user]);
 
   return null; // No UI needed
 }

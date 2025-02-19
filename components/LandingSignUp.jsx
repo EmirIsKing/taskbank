@@ -28,7 +28,7 @@ const LandingSignUp = ({ referredBy }) => {
       setHidden(true);
     }
 
-  }, [])
+  }, [pathname])
   
 
 
