@@ -1,5 +1,5 @@
-import { db } from "@/firebase"; // Adjust the path
-import { doc, getDoc, setDoc, updateDoc, collection, addDoc } from "firebase/firestore";
+import { db } from "@/utils/firebase/clientApp";
+import { doc, getDoc, setDoc, updateDoc, collection } from "firebase/firestore";
 import { getAuth } from "@clerk/nextjs/server"; 
 import { NextResponse } from "next/server";
 
@@ -26,6 +26,11 @@ export async function POST(req) {
             await setDoc(userDocRef, { offers: [], withdrawal: [] });
         }
 
+        // ✅ Create a unique transaction ID (Firestore-generated document ID)
+        const withdrawalRef = collection(db, "withdrawals");
+        const transactionDocRef = doc(withdrawalRef); // Generates a new unique ID
+        const transactionId = transactionDocRef.id;
+
         // ✅ Fetch updated user data
         const userDoc = await getDoc(userDocRef);
         const userInfo = userDoc.data();
@@ -35,6 +40,7 @@ export async function POST(req) {
                 withdrawal: [
                     ...(userInfo?.withdrawal || []), 
                     {
+                        transactionId,
                         status: newStatus,
                         address,
                         amount,
@@ -45,9 +51,9 @@ export async function POST(req) {
             });
         }
 
-        // ✅ Add withdrawal to "withdrawals" collection
-        const withdrawalRef = collection(db, "withdrawals");
-        const docRef = await addDoc(withdrawalRef, {
+        // ✅ Store withdrawal using the same transaction ID
+        await setDoc(transactionDocRef, {
+            transactionId,
             userId: userid,
             status: newStatus,
             address,
@@ -56,10 +62,10 @@ export async function POST(req) {
             createdAt: new Date().toISOString(),
         });
 
-        console.log("Withdrawal requested successfully:", docRef.id);
+        console.log("Withdrawal requested successfully:", transactionId);
 
         // ✅ Return success response
-        return NextResponse.json({ success: true, id: docRef.id }, { status: 200 });
+        return NextResponse.json({ success: true, transactionId }, { status: 200 });
 
     } catch (error) {
         console.error("Request failed:", error);

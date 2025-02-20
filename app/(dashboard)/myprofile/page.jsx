@@ -23,15 +23,17 @@ const Page = () => {
   });
   const { userId } = useAuth();
   const [data, setData] = useState(null);
-  const [reward, setReward] = useState(0)
-  const [offers, setOffers] = useState([])
+  const [reward, setReward] = useState(0);
+  const [offers, setOffers] = useState([]);
+  const [withdrawals, setWithdrawals] = useState([]);
 
   useEffect(() => {
     const unsubscribe = getDetails(userId, (data) => {
       if (data) { 
         setData(data);
-        setReward(data.reward);
-        setOffers(data?.offers || [])
+        setReward(data?.reward || 0);
+        setOffers(data?.offers || []);
+        setWithdrawals(data?.withdrawal || []);
       } else {
         console.log("No data or error occurred");
       }
@@ -161,7 +163,7 @@ const Page = () => {
         <table className='gap-2'>
           <thead className='border-b border-blue-200 border-opacity-30'>
             <tr>
-              <th className='py-[11.25px] px-[22.5px] justify-start'><p className='text-center'>Type</p></th>
+              <th className='py-[11.25px] px-[22.5px] justify-start'><p className='text-center'>Method</p></th>
               <th className='py-[11.25px] px-[22.5px] justify-start'><p className='text-center'>Rewards</p></th>
               <th className='py-[11.25px] px-[22.5px] justify-start'><p className='text-center'>Number/address</p></th>
               <th className='py-[11.25px] px-[22.5px] justify-start'><p className='text-center'>Transaction ID</p></th>
@@ -170,11 +172,25 @@ const Page = () => {
             </tr>
           </thead>
           <tbody className='text-blue-200 text-opacity-85'>
+          {withdrawals.length > 0 ? (
+                withdrawals && withdrawals.map((element, index)=>(
+                  <tr key={index}>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.method}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">$ {element.amount}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.address}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.transactionId}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{new Date(element.createdAt.toDate()).toLocaleDateString()}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.status}</td>
+
+                </tr>
+                ))
+              ) : (
                 <tr>
                   <td colSpan="4" className="p-4 text-center text-blue-200">
                     No referrals yet
                   </td>
                 </tr>
+              )}
           </tbody>
 
         </table>

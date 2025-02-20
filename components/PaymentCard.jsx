@@ -80,8 +80,9 @@ const handleSubmit = (e) => {
 };
 
 const handleUpdateWithdrawal = async ( newStatus, address, amount, method ) => {
+	const userid = userId;
 	try {
-	  const response = await fetch("/api/withdrawals", {
+	  const response = await fetch("/api/webhooks/withdrawal", {
 		method: "POST",
 		headers: {
 		  "Content-Type": "application/json",
