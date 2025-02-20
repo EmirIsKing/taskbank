@@ -5,7 +5,7 @@ import getDetails from '@/utils/actions/getDetails'
 import { useAuth } from '@clerk/nextjs'
 import MobileWithdrawal from '@/components/MobileWithdrawal'
 
-const page = () => {
+const Page = () => {
 
   const { userId } = useAuth();
   const [withdrawals, setWithdrawals] = useState([]);
@@ -51,4 +51,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
