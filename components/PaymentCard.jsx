@@ -68,12 +68,43 @@ const handleSubmit = (e) => {
     // Process form data
     const formData = new FormData(e.target);
     const formDataObject = Object.fromEntries(formData.entries());
+
+	handleUpdateWithdrawal("Pending", formDataObject.Address, Number(formDataObject.Amount), name);
+
+
     
     console.log("Submitted Data:", { ...formDataObject, name });
 
     setOpenForm(false);
     setValue(0);
 };
+
+const handleUpdateWithdrawal = async ( newStatus, address, amount, method ) => {
+	try {
+	  const response = await fetch("/api/withdrawals", {
+		method: "POST",
+		headers: {
+		  "Content-Type": "application/json",
+		},
+		body: JSON.stringify({ newStatus, address, amount, method, userid }),
+	  });
+  
+	  const data = await response.json();
+	  if (!response.ok) throw new Error(data.error || "Something went wrong - withdrawal");
+  
+	  console.log("Withdrawal requested successfully:", data);
+	  toast({
+		title: "Success",
+		description: "Withdrawal requested!",
+	  });
+	} catch (error) {
+	  console.error("request failed:", error);
+	  toast({
+		title: "Error",
+		description: error.message || "Failed to request withdrawal. Try again later or contact support.",
+	  });
+	}
+  };
 
 
 
@@ -148,7 +179,7 @@ const text = name === "Mobile Money"
 								/>
 								<p className='text-blue-200 text-opacity-85 text-xs'>Minimum ${min}</p>
 							</div>
-							<button className='w-[629px] rounded-lg p-2 max-md:w-[300px] bg-base-2'>
+							<button type='submit' className='w-[629px] rounded-lg p-2 max-md:w-[300px] bg-base-2'>
 								Withdraw
 							</button>
 						</div>
