@@ -48,6 +48,7 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default first
+	console.log('submit check1')
 
     // Ensure data values are not undefined
     const barValue = Number(
@@ -55,15 +56,22 @@ const handleSubmit = (e) => {
         (data?.referralEarnings || 0) + 
         ((data?.reward || 0) / 1000)
     );
+	console.log('submit check2')
 
     // Check eligibility
     if (barValue !== 6) {
+		console.log('submit check2.5')
+	
         toast({
+			variant: "destructive",
             title: "Not eligible for withdrawal",
             description: "You must complete the required actions before you can withdraw.",
         });
+	console.log('submit check2.6')
+
         return;
     }
+	console.log('submit check3')
 
     // Process form data
     const formData = new FormData(e.target);
@@ -71,6 +79,7 @@ const handleSubmit = (e) => {
 
 	handleUpdateWithdrawal("Pending", formDataObject.Address, Number(formDataObject.Amount), name);
 
+	console.log('submit check4')
 
     
     console.log("Submitted Data:", { ...formDataObject, name });
