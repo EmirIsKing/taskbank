@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BackSvg from '@/public/images/back.svg'
 import getDetails from '@/utils/actions/getDetails'
 import { useAuth } from '@clerk/nextjs'
