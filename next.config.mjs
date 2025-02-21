@@ -22,7 +22,7 @@ const nextConfig = {
     return [
       {
         source: '/sitemap.xml',
-        destination: '/api/sitemap.xml', // Dynamic sitemap route
+        destination: '/api/sitemap.xml.js', // Dynamic sitemap route
       },
     ];
   },
