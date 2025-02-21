@@ -1,47 +1,27 @@
+const { withSitemap } = require('next-sitemap');
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withSitemap({
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: '/(.*)',
         headers: [
           {
-            key: "Content-Security-Policy",
-            value: "", // Temporarily disable CSP
-          },
-          {
-            key: "X-Robots-Tag",
-            value: "index, follow", // Allow search engines to index and follow links
+            key: 'Content-Security-Policy',
+            value: '', // Temporarily disable CSP
           },
         ],
       },
     ];
   },
-
-  async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap.xml.js', // Dynamic sitemap route
-      },
-    ];
-  },
-
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: ['@svgr/webpack'],
     });
     return config;
   },
+});
 
-  // Sitemap generation settings (optional if using next-sitemap package)
-  sitemap: {
-    siteUrl: "https://www.taskbank.online",
-    generateRobotsTxt: true, // Generates robots.txt file automatically
-    changefreq: "daily",
-    priority: 0.7,
-  },
-};
-
-export default nextConfig;
+module.exports = nextConfig;
