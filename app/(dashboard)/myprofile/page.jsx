@@ -187,10 +187,12 @@ const Page = () => {
                   <div
                     className={`p-2 rounded-full font-bold ${
                       element.status === 'Pending'
-                        ? 'text-yellow-500 bg-yellow-100 bg-opacity-70'
+                        ? 'text-yellow-500 bg-yellow-100 bg-opacity-40'
                         : element.status === 'Paid'
-                        ? 'text-green-500 bg-green-100 bg-opacity-70'
-                        : 'text-gray-400 bg-gray-100 bg-opacity-70'
+                        ? 'text-green-500 bg-green-100 bg-opacity-40'
+                        : element.status === 'Cancelled'
+                        ? 'text-red-400 bg-red-100 bg-opacity-40'
+                        : 'text-gray-400 bg-gray-100 bg-opacity-40'
                     }`}
                   >
                     {element.status}

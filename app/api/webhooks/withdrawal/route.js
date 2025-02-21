@@ -36,7 +36,11 @@ export async function POST(req) {
         const userInfo = userDoc.data();
 
         if (userInfo) {
+
+            const updatedReward = Math.max(0, Number(userInfo?.reward) - amount * 1000);
+
             await updateDoc(userDocRef, {
+                reward: updatedReward,
                 withdrawal: [
                     ...(userInfo?.withdrawal || []), 
                     {
