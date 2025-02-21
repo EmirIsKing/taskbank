@@ -128,7 +128,7 @@ const text = name === "Mobile Money"
               <div className={`rounded-lg ${className} flex justify-center items-center h-[120px]`}>
                 <Image src={img} width={40} height={40} alt={name}/>
               </div>
-              <div>
+              <div className='w-[220px]'>
                 <ProgressBar value={Number(data?.referralCount + data?.referralEarnings + (data?.reward/1000))} max={6} className={'h-2 bg-base-3'} indicatorclassName={'bg-white'}/>
               </div>
               <div className='text-xs text-blue-200 opacity-80 w-full flex justify-between'>
