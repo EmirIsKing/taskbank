@@ -1,15 +1,15 @@
-const { withSitemap } = require('next-sitemap');
+import withSitemap from 'next-sitemap';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withSitemap({
+const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: '', // Temporarily disable CSP
+            key: "Content-Security-Policy",
+            value: "", // Temporarily disable CSP
           },
         ],
       },
@@ -18,10 +18,10 @@ const nextConfig = withSitemap({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
     return config;
   },
-});
+};
 
-module.exports = nextConfig;
+export default withSitemap(nextConfig);
