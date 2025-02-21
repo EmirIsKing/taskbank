@@ -145,7 +145,7 @@ const text = name === "Mobile Money"
                 <ProgressBar value={Number(data?.referralCount + data?.referralEarnings + (data?.reward/1000))} max={6} className={'h-2 bg-base-3'} indicatorclassName={'bg-white'}/>
               </div>
               <div className='text-xs text-blue-200 opacity-80 w-full flex justify-between'>
-                <span>${data?.referralEarnings + (data?.reward/1000)}/$3.00</span>
+                <span>${(data?.referralEarnings + (data?.reward/1000)).toFixed(2)}/$3.00</span>
                 <span className='flex gap-1 justify-center items-center'>
                   <UserSvg className="text-blue-200 text-opacity-80 w-3 h-3 font-bold"/>
                   <span>{data?.referralCount}/{max}</span>
