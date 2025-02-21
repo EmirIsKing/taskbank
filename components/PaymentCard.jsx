@@ -59,7 +59,7 @@ const handleSubmit = (e) => {
 	console.log('submit check2')
 
     // Check eligibility
-    if (barValue !== 6) {
+    if (barValue < 6) {
 		console.log('submit check2.5')
 	
         toast({
