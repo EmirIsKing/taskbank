@@ -187,6 +187,7 @@ const text = name === "Mobile Money"
 									onWheel={handleScroll} 
 									onChange={handleChange}
 									onClick={() => setValue("")}
+									step="0.01"
 									name="Amount" 
 									id="Amount" 
 									className='w-[629px] p-3 max-md:w-[300px] bg-base-3 rounded-lg placeholder-opacity-85 appearance-none focus:outline-none' 
