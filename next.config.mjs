@@ -1,5 +1,3 @@
-import withSitemap from 'next-sitemap';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
@@ -11,10 +9,15 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: "", // Temporarily disable CSP
           },
+          {
+            key: "X-Robots-Tag",
+            value: "index, follow", // Allow search engines to index and follow links
+          },
         ],
       },
     ];
   },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -22,6 +25,7 @@ const nextConfig = {
     });
     return config;
   },
+
 };
 
-export default withSitemap(nextConfig);
+export default nextConfig;
