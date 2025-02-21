@@ -69,7 +69,6 @@ const Page = () => {
     fetchReferralStats();
   }, [user?.id]);
 
-  console,log(withdrawals)
 
   if (!isLoaded) {
     return (
