@@ -13,7 +13,6 @@ import UserProfileButton from '@/components/UserProfileButton'
 import ProfiileDP from '@/components/ProfiileDP'
 import UserFirstName from '@/components/UserFirstName'
 import getDetails from '@/utils/actions/getDetails';
-import { log } from 'console';
 
 const Page = () => {
   const { user, isLoaded } = useUser();
