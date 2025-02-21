@@ -174,24 +174,38 @@ const Page = () => {
           </thead>
           <tbody className='text-blue-200 text-opacity-85'>
           {withdrawals.length > 0 ? (
-                withdrawals && withdrawals.map((element, index)=>(
-                  <tr key={index}>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.method}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">$ {element.amount}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.address}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.transactionId}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{new Date(element.createdAt).toLocaleDateString()}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{element.status}</td>
+            withdrawals.map((element, index) => (
+              <tr key={index}>
+                <td className="p-4 text-center text-blue-200">{element.method}</td>
+                <td className="p-4 text-center text-blue-200">$ {element.amount}</td>
+                <td className="p-4 text-center text-blue-200">{element.address}</td>
+                <td className="p-4 text-center text-blue-200">{element.transactionId}</td>
+                <td className="p-4 text-center text-blue-200">
+                  {new Date(element.createdAt).toLocaleDateString()}
+                </td>
+                <td className="p-4 text-center">
+                  <div
+                    className={`p-2 rounded-full font-bold ${
+                      element.status === 'Pending'
+                        ? 'text-yellow-500 bg-yellow-100'
+                        : element.status === 'Paid'
+                        ? 'text-green-500 bg-green-100'
+                        : 'text-gray-400 bg-gray-100'
+                    }`}
+                  >
+                    {element.status}
+                  </div>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="p-4 text-center text-blue-200">
+                No referrals yet
+              </td>
+            </tr>
+          )}
 
-                </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="4" className="p-4 text-center text-blue-200">
-                    No referrals yet
-                  </td>
-                </tr>
-              )}
           </tbody>
 
         </table>
