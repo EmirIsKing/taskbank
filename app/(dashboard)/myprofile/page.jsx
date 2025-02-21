@@ -13,6 +13,7 @@ import UserProfileButton from '@/components/UserProfileButton'
 import ProfiileDP from '@/components/ProfiileDP'
 import UserFirstName from '@/components/UserFirstName'
 import getDetails from '@/utils/actions/getDetails';
+import { log } from 'console';
 
 const Page = () => {
   const { user, isLoaded } = useUser();
@@ -67,6 +68,8 @@ const Page = () => {
 
     fetchReferralStats();
   }, [user?.id]);
+
+  console,log(withdrawals)
 
   if (!isLoaded) {
     return (
@@ -179,7 +182,7 @@ const Page = () => {
                   <td colSpan="6" className="p-4 text-center text-blue-200">$ {element.amount}</td>
                   <td colSpan="6" className="p-4 text-center text-blue-200">{element.address}</td>
                   <td colSpan="6" className="p-4 text-center text-blue-200">{element.transactionId}</td>
-                  <td colSpan="6" className="p-4 text-center text-blue-200">{new Date(element.createdAt.toDate()).toLocaleDateString()}</td>
+                  <td colSpan="6" className="p-4 text-center text-blue-200">{new Date(element.createdAt).toLocaleDateString()}</td>
                   <td colSpan="6" className="p-4 text-center text-blue-200">{element.status}</td>
 
                 </tr>

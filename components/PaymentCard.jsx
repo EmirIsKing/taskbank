@@ -48,7 +48,6 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default first
-	console.log('submit check1')
 
     // Ensure data values are not undefined
     const barValue = Number(
@@ -56,31 +55,24 @@ const handleSubmit = (e) => {
         (data?.referralEarnings || 0) + 
         ((data?.reward || 0) / 1000)
     );
-	console.log('submit check2')
 
     // Check eligibility
     if (barValue < 6) {
-		console.log('submit check2.5')
 	
         toast({
 			variant: "destructive",
             title: "Not eligible for withdrawal",
             description: "You must complete the required actions before you can withdraw.",
         });
-	console.log('submit check2.6')
 
         return;
     }
-	console.log('submit check3')
 
     // Process form data
     const formData = new FormData(e.target);
     const formDataObject = Object.fromEntries(formData.entries());
 
 	handleUpdateWithdrawal("Pending", formDataObject.Address, Number(formDataObject.Amount), name);
-
-	console.log('submit check4')
-
     
     console.log("Submitted Data:", { ...formDataObject, name });
 
@@ -89,8 +81,9 @@ const handleSubmit = (e) => {
 };
 
 const handleUpdateWithdrawal = async ( newStatus, address, amount, method ) => {
-	const userid = userId;
+	
 	try {
+	  const userid = userId;
 	  const response = await fetch("/api/webhooks/withdrawal", {
 		method: "POST",
 		headers: {
@@ -106,6 +99,7 @@ const handleUpdateWithdrawal = async ( newStatus, address, amount, method ) => {
 	  toast({
 		title: "Success",
 		description: "Withdrawal requested!",
+		className: "text-base-2",
 	  });
 	} catch (error) {
 	  console.error("request failed:", error);
