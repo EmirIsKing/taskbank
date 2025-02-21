@@ -4,7 +4,7 @@ function ProgressBar({ value, max, className, indicatorclassName }) {
   return (
     <Progress.Root value={value} max={max} className={`w-[220px] rounded-md ${className}`}>
       <Progress.Indicator 
-        className={`h-full rounded-md transition-all ease-in-out duration-300 ${indicatorclassName}`}
+        className={`h-full rounded-md transition-all w-[220px] ease-in-out duration-300 ${indicatorclassName}`}
         style={{ width: `${(value / max) * 100}%` }} 
       />
     </Progress.Root>
