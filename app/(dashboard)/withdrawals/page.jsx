@@ -35,7 +35,7 @@ const Page = () => {
         </a>
         <span className='text-xl font-bold'>Withdrawals</span>
       </div>
-      <div className='flex flex-col justify-center items-center pt-6 text-white'>
+      <div className='flex flex-col justify-center items-center pt-6 text-white gap-3 px-3'>
           {withdrawals.length > 0 ? (
                 withdrawals && withdrawals.map((element, index)=>(
                   <MobileWithdrawal key={index} amount={element.amount} method={element.method} status={element.status} txnId={element.transactionId}/>
