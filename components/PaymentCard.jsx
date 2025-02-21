@@ -122,7 +122,7 @@ const text = name === "Mobile Money"
 
   return (
     <>
-		<button onClick={() => setOpenForm(true)} className={'bg-base-1 w-[220px] h-[200px] max-md:w-[300px] rounded-lg flex flex-col gap-3 hover:ring-1 hover:ring-base-2 pt-1'}>
+		<button onClick={() => setOpenForm(true)} className={'bg-base-1 w-[240px] h-[200px] max-md:w-[300px] rounded-lg flex flex-wrap flex-col gap-3 hover:ring-1 hover:ring-base-2 pt-1'}>
           <h1 className='text-center font-bold w-full'>{name}</h1>
           <div className='px-3 flex flex-col gap-2 w-full'>
               <div className={`rounded-lg ${className} flex justify-center items-center h-[120px]`}>
