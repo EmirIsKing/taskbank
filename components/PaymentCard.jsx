@@ -56,6 +56,7 @@ const handleSubmit = (e) => {
         ((data?.reward || 0) / 1000)
     );
 
+
     // Check eligibility
     if (barValue < 6) {
 	
@@ -72,7 +73,19 @@ const handleSubmit = (e) => {
     const formData = new FormData(e.target);
     const formDataObject = Object.fromEntries(formData.entries());
 
-	handleUpdateWithdrawal("Pending", formDataObject.Address, Number(formDataObject.Amount), name);
+	const amount = Number(formDataObject.Amount);
+
+	if ((amount * 1000) > data?.reward) {
+		toast({
+			variant: "destructive",
+            title: "Insufficient Balance",
+            description: "The withdrawal amount exceeds your available balance.",
+        });
+		return;
+	}
+
+
+	handleUpdateWithdrawal("Pending", formDataObject.Address, amount, name);
     
     console.log("Submitted Data:", { ...formDataObject, name });
 
