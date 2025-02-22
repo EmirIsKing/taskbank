@@ -7,7 +7,7 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "", // Temporarily disable CSP
+            value: "script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none';", // Temporarily disable CSP
           },
           {
             key: "X-Robots-Tag",
