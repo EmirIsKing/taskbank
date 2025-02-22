@@ -11,6 +11,8 @@ export default clerkMiddleware(async (auth, request) => {
     if (!user) {
       return NextResponse.redirect(new URL('/', request.url))
     }
+
+    return NextResponse.next();
   }
 })
 
