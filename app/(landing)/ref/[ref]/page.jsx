@@ -265,7 +265,7 @@ const { ref } = useParams();
             <div className='flex flex-col gap-2'>
             <p className='font-bold text-xl text-slate-200'>Support</p>
               <div className='flex flex-col gap-1 text-base max-md:text-xs'>
-                <a href="/how-it-works">How does TaskBank work?</a>
+                <a href="/faq">How does TaskBank work?</a>
                 <a href="/support">Support</a>
               </div>
             </div>

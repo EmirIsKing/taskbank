@@ -109,7 +109,7 @@ export default function RootLayout({ children }) {
           />
         </head>
         <body>
-        <ClerkProvider signInUrl="https://www.taskbank.online/">
+        <ClerkProvider appearance={{}} signInUrl="/" signUpUrl="/">
           <Analytics />
           <SpeedInsights/>
           {children}
