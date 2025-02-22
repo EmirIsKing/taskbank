@@ -64,7 +64,7 @@ const Page = () => {
             </div>
             <div>
               <p className="text-sm text-blue-200">Total Earnings</p>
-              <p className="text-xl font-bold text-white">$ {referralDetails.totalEarnings}</p>
+              <p className="text-xl font-bold text-white">$ {Number(referralDetails.totalEarnings).toFixed(2)}</p>
             </div>
           </div>
         </div>

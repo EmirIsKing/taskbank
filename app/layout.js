@@ -109,7 +109,7 @@ export default function RootLayout({ children }) {
           />
         </head>
         <body>
-        <ClerkProvider appearance={{}} signInUrl="/" signUpUrl="/">
+        <ClerkProvider>
           <Analytics />
           <SpeedInsights/>
           {children}
