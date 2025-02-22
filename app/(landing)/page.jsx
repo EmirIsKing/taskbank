@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Poppins, Rethink_Sans } from 'next/font/google'
-import LandingSignUp from '../../../components/LandingSignUp';
+import LandingSignUp from '../../components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
