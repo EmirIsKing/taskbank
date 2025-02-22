@@ -1,48 +1,25 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
-// Define public routes
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/api/(.*)',
-  '/ref/(.*)',
-  '(footer)',
-  '/terms-of-service',
-  '/privacy-policy',
-  '/cookie-policy',
-  '/how-it-works',
-  '/faq',
-  '(landing)',
-  '/sso-callback',
-  '/v1/oauth_callback',
-  '/sitemap.xml',
-  '/sitemap-0.xml',
-  '/robots.txt',
-  '/sign-in',
-  '/sign-up'
-]);
+const isPublicRoute = createRouteMatcher(['/', '/api/(.*)', '/ref/(.*)', '(footer)', '/terms-of-service', '/privacy-policy', '/cookie-policy', '/how-it-works', '/faq', '(landing)', '/sso-callback', '/v1/oauth_callback', '/sitemap.xml', '/sitemap-0.xml', '/robots.txt'])
 
 export default clerkMiddleware(async (auth, request) => {
-  if (isPublicRoute(request)) {
-    return NextResponse.next();
+  if (!isPublicRoute(request)) {
+    await auth.protect()
+    const user = await auth();
+
+    if (!user) {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+    
   }
+})
 
-  // Protect private routes
-  await auth.protect();
-  const user = await auth();
-
-  // Redirect unauthenticated users to homepage
-  if (!user) {
-    const signInUrl = new URL('/', request.url);
-    return NextResponse.redirect(signInUrl);
-  }
-
-  return NextResponse.next();
-});
-
-// Catch-all matcher for all routes except static assets
 export const config = {
   matcher: [
-    '/((?!_next|.*\\.(?:ico|png|jpg|jpeg|svg|gif|webp|css|js|json|txt|map|woff2?|ttf|eot)).*)', // Exclude static files
-  ],
-};
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/',
+  ]
+}

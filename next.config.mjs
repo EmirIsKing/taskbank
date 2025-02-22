@@ -7,11 +7,19 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "", // Temporarily disable CSP
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval';
+              style-src 'self' 'unsafe-inline';
+              img-src 'self' data:;
+              font-src 'self';
+              connect-src 'self' https:;
+              frame-src 'self';
+            `.replace(/\s{2,}/g, ' '), // Minify by removing extra spaces
           },
           {
             key: "X-Robots-Tag",
-            value: "index, follow", // Allow search engines to index and follow links
+            value: "index, follow",
           },
         ],
       },
@@ -25,7 +33,6 @@ const nextConfig = {
     });
     return config;
   },
-
 };
 
 export default nextConfig;
