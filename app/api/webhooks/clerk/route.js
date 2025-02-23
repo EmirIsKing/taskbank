@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server'
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { doc, setDoc, updateDoc, increment, query, where, getDocs, collection, addDoc, getDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc, arrayUnion, query, where, getDocs, collection, addDoc, getDoc } from "firebase/firestore"; 
 import { db } from "@/utils/firebase/clientApp"; 
 
 function generateReferralCode(length = 8) {
@@ -111,20 +111,18 @@ export async function POST(req) {
     
           const referralDocRef = doc(db, "referrals", referredByCode);
           const referralInfoDoc = await getDoc(referralDocRef);
-          const referralInfo = referralInfoDoc.data();
+          const referralInfo = referralInfoDoc.exists() ? referralInfoDoc.data() : { referrals: [] };
 
-          const referralDoc = [
-            ...(referralInfo || []),
-            {
-            referrerId: referrerDoc.id,
-            referredId: id,
-            referralCode: referredByCode,
-            timestamp: new Date(),
-            rewardPaid: "Paid",
-            status: "completed",
-          }];
-    
-          await setDoc(referralDocRef, referralDoc);
+          await setDoc(referralDocRef, {
+            referrals: arrayUnion({
+              referrerId: referrerDoc.id,
+              referredId: id,
+              referralCode: referredByCode,
+              timestamp: new Date(),
+              rewardPaid: "Paid",
+              status: "completed",
+            })
+          }, { merge: true });
         }
       }
     
