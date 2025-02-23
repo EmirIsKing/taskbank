@@ -110,15 +110,19 @@ export async function POST(req) {
           });
     
           const referralDocRef = doc(db, "referrals", referredByCode);
-    
-          const referralDoc = {
+          const referralInfoDoc = await getDoc(referralDocRef);
+          const referralInfo = referralInfoDoc.data();
+
+          const referralDoc = [
+            ...(referralInfo || []),
+            {
             referrerId: referrerDoc.id,
             referredId: id,
             referralCode: referredByCode,
             timestamp: new Date(),
             rewardPaid: "Paid",
             status: "completed",
-          };
+          }];
     
           await setDoc(referralDocRef, referralDoc);
         }
