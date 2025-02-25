@@ -108,10 +108,7 @@ export async function POST(req) {
             referralEarnings: (referrerData.referralEarnings || 0) + 0.10,
           });
 
-          // Reference to the sub-collection and document inside referrals
-          const referralSubCollectionRef = collection(db, "referrals", referredByCode, "referralsData");
-          const referralDocRef = doc(referralSubCollectionRef, "allReferrals");
-
+          const referralDocRef = doc(db, "referrals", referredByCode);
           const referralDocSnap = await getDoc(referralDocRef);
 
           if (referralDocSnap.exists()) {
@@ -141,6 +138,7 @@ export async function POST(req) {
               ],
             });
           }
+
         }
       }
 
