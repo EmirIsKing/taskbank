@@ -109,7 +109,7 @@ export async function POST(req) {
           });
 
           // Add referral entry under referrals/{referrerId}/{auto-generated-doc}
-          const referralSubCollectionRef = collection(db, "referrals", referrerId, "referrals");
+          const referralSubCollectionRef = collection(db, "referrals", referredByCode);
           await addDoc(referralSubCollectionRef, {
             referrerId: referrerId,
             referredId: id,
