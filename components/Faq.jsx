@@ -9,7 +9,6 @@ const Faq = () => {
 
   return (
     <>
-      <h1 className='text-center text-white font-bold text-5xl mt-5'>FAQ</h1>
      <div className='flex flex-col mt-7 text-white w-full h-full justify-center items-center gap-3'>
       {faqElements.map((answer, index) => (
         <FaqComponent key={index} title={answer.title} content={answer.content} id={answer.id}/>

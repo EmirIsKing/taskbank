@@ -1,8 +1,8 @@
-import { clerkClient } from '@clerk/nextjs/server'
+import { clerkClient } from '@clerk/nextjs/server';
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { doc, setDoc, updateDoc, arrayUnion, query, where, getDocs, collection, addDoc, getDoc } from "firebase/firestore"; 
-import { db } from "@/utils/firebase/clientApp"; 
+import { doc, setDoc, updateDoc, collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
+import { db } from "@/utils/firebase/clientApp";
 
 function generateReferralCode(length = 8) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -50,7 +50,6 @@ export async function POST(req) {
 
     const client = await clerkClient();
 
-
     let user_data;
     try {
       user_data = await client.users.getUser(id);
@@ -65,10 +64,10 @@ export async function POST(req) {
 
     const user = {
       clerkId: id,
-      email: emailAddresses[0].emailAddress ,
+      email: emailAddresses[0].emailAddress,
       username,
-      firstName: firstName,
-      lastName: lastName,
+      firstName,
+      lastName,
       reward: 0,
       referralCode,
       referredBy: referredByCode,
@@ -80,7 +79,7 @@ export async function POST(req) {
       notification: [
         {
           date: new Date(),
-          message: `Welcome to Taskbank, ${firstName}! 🎉 We're thrilled to have you on board. Ready to start earning rewards by completing simple tasks? You're just a few steps away from unlocking exciting opportunities to make money in your spare time.`,
+          message: `Welcome to Taskbank, ${firstName}! 🎉 Ready to start earning rewards by completing simple tasks?`,
         },
       ],
     };
@@ -89,43 +88,39 @@ export async function POST(req) {
 
     try {
       const userDocRef = doc(db, "users", id);
-      await setDoc(userDocRef, user, { merge: true });  // ✅ Prevents overwriting
-    
+      await setDoc(userDocRef, user, { merge: true });
+
       if (referredByCode) {
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("referralCode", "==", referredByCode));
         const querySnapshot = await getDocs(q);
-    
-    
-        if (querySnapshot) {
-          const referrerDoc = querySnapshot.docs[0];
-        
-          const userDocRef = doc(db, "users", referrerDoc.id);
-          const userDoc = await getDoc(userDocRef);
-          const userInfo = userDoc.data();
-    
-          await updateDoc(userDocRef, {
-            referralCount: (userInfo.referralCount || 0) + 1,  // ✅ Ensures it exists
-            referralEarnings: (userInfo.referralEarnings || 0) + 0.10,
-          });
-    
-          const referralDocRef = doc(db, "referrals", referredByCode);
-          const referralInfoDoc = await getDoc(referralDocRef);
-          const referralInfo = referralInfoDoc.exists() ? referralInfoDoc.data() : { referrals: [] };
 
-          await setDoc(referralDocRef, {
-            referrals: arrayUnion({
-              referrerId: referrerDoc.id,
-              referredId: id,
-              referralCode: referredByCode,
-              timestamp: new Date(),
-              rewardPaid: "Paid",
-              status: "completed",
-            })
-          }, { merge: true });
+        if (!querySnapshot.empty) {
+          const referrerDoc = querySnapshot.docs[0];
+          const referrerId = referrerDoc.id;
+
+          const referrerUserDocRef = doc(db, "users", referrerId);
+          const referrerData = (await getDoc(referrerUserDocRef)).data();
+
+          // Update referral stats for referrer
+          await updateDoc(referrerUserDocRef, {
+            referralCount: (referrerData.referralCount || 0) + 1,
+            referralEarnings: (referrerData.referralEarnings || 0) + 0.10,
+          });
+
+          // Add referral entry under referrals/{referrerId}/{auto-generated-doc}
+          const referralSubCollectionRef = collection(db, "referrals", referrerId, "referrals");
+          await addDoc(referralSubCollectionRef, {
+            referrerId: referrerId,
+            referredId: id,
+            referralCode: referredByCode,
+            timestamp: new Date(),
+            rewardPaid: "Paid",
+            status: "completed",
+          });
         }
       }
-    
+
       return new Response(JSON.stringify({ message: "User created", user }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -134,7 +129,6 @@ export async function POST(req) {
       console.error("Firestore error:", error);
       return new Response("Error creating user", { status: 500 });
     }
-    
   }
 
   console.log(`Webhook received: ${eventType}`);

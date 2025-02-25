@@ -39,7 +39,7 @@ const Page = () => {
   return (
     <div className='w-full h-[70vh] text-white mt-24 justify-center items-center text-center'>
       <span>
-        <h1 className='font-medium text-xl text-blue-200 opacity-85'>Choose any of our providers to start a task</h1>
+        <h1 className='font-medium text-xl text-blue-200 opacity-85'>Choose any of our providers to start a task. More coming soon.</h1>
       </span>
       <div className="flex flex-wrap gap-4 py-2 max-md:pl-8 max-md:mt-3">
         {providers && providers.map((provider, index) => (

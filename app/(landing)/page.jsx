@@ -241,6 +241,7 @@ const Landing = () => {
         </div>
       </section>
       <section>
+      <h2 className='text-center text-white font-bold text-5xl mt-5'>FAQ</h2>
         <Faq/>
       </section>
       <footer className='w-full bg-base-1 py-14 mt-12'>
