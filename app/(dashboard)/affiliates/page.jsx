@@ -103,8 +103,8 @@ const Page = () => {
               </tr>
             </thead>
             <tbody>
-              {referralDetails.referrals.length > 0 ? (
-                referralDetails.referrals.map((referral) => (
+              {referralDetails.length > 0 ? (
+                referralDetails.map((referral) => (
                   <tr key={referral.id} className="border-t border-white border-opacity-5">
                     <td className="p-4 text-blue-200">{referral.referredId.slice(0, 8)}...</td>
                     <td className="p-4 text-blue-200">
