@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server';
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { doc, setDoc, updateDoc, collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, collection, getDoc, getDocs, addDoc, query, where, arrayUnion } from "firebase/firestore";
 import { db } from "@/utils/firebase/clientApp";
 
 function generateReferralCode(length = 8) {
@@ -108,16 +108,39 @@ export async function POST(req) {
             referralEarnings: (referrerData.referralEarnings || 0) + 0.10,
           });
 
-          // Add referral entry under referrals/{referrerId}/{auto-generated-doc}
-          const referralSubCollectionRef = collection(db, "referrals", referredByCode);
-          await addDoc(referralSubCollectionRef, {
-            referrerId: referrerId,
-            referredId: id,
-            referralCode: referredByCode,
-            timestamp: new Date(),
-            rewardPaid: "Paid",
-            status: "completed",
-          });
+          // Reference to the sub-collection and document inside referrals
+          const referralSubCollectionRef = collection(db, "referrals", referredByCode, "referralsData");
+          const referralDocRef = doc(referralSubCollectionRef, "allReferrals");
+
+          const referralDocSnap = await getDoc(referralDocRef);
+
+          if (referralDocSnap.exists()) {
+            // If document exists, update it with arrayUnion
+            await updateDoc(referralDocRef, {
+              referrals: arrayUnion({
+                referrerId: referrerId,
+                referredId: id,
+                referralCode: referredByCode,
+                timestamp: new Date(),
+                rewardPaid: "Paid",
+                status: "completed",
+              }),
+            });
+          } else {
+            // If document does not exist, create it
+            await setDoc(referralDocRef, {
+              referrals: [
+                {
+                  referrerId: referrerId,
+                  referredId: id,
+                  referralCode: referredByCode,
+                  timestamp: new Date(),
+                  rewardPaid: "Paid",
+                  status: "completed",
+                },
+              ],
+            });
+          }
         }
       }
 
