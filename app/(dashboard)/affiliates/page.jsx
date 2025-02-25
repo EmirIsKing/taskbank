@@ -32,6 +32,7 @@ const Page = () => {
       </div>
     )
   }
+  console.log(referralDetails);
 
 
   return (
