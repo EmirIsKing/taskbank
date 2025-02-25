@@ -219,7 +219,7 @@ const Page = () => {
       <div className='flex justify-between items-center px-3'>
         <span className='text-2xl font-bold pl-2'>My Profile</span>
         <button className='text-base-2 font-semibold flex justify-center items-center gap-2'>
-          <SettingSvg className="w-5 h-5"/>
+        <UserProfileButton/>
         </button>
       </div>
       <div className='flex w-full items-center gap-7 border-b border-blue-200 border-opacity-55'>
