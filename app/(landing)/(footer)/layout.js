@@ -10,9 +10,6 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  alternates: {
-    canonical: "https://taskbank.online/",
-  },
   openGraph: {
     title: "TaskBank | Earn Money Online Easily",
     description:
