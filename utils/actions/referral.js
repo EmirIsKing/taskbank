@@ -80,24 +80,22 @@ const getReferralDetails = (userId, callback) => {
       const userData = userDoc.data();
       
       // Get list of referred users
-      const referralsRef = collection(db, 'referrals');
-      const q = query(referralsRef, where('referrerId', '==', userId));
-      const referralsSnapshot = await getDocs(q);
-      
-      const referrals = [];
-      referralsSnapshot.forEach((doc) => {
-        referrals.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-      
+      const referralDocRef = doc(db, "referrals", userData.referralCode);
+      const referralDocSnap = await getDoc(referralDocRef);
+
+      let referrals = [];
+      if (referralDocSnap.exists()) {
+        const referralData = referralDocSnap.data();
+        referrals = referralData.referrals || []; // Ensure it's an array
+      }
+
       const referralDetails = {
         referralCode: userData.referralCode || null,
         referralCount: userData.referralCount || 0,
         totalEarnings: userData.referralEarnings || 0,
         referrals: referrals
       };
+
       
       callback(referralDetails);
     });
