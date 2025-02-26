@@ -6,6 +6,7 @@ import Earn from "../public/images/earn.svg";
 import LandingNavSignIn from "./LandingNavSignIn";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { useParams, useRouter } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
 const LandingNavBar = ({ referredBy }) => {
   const router = useRouter();
@@ -71,6 +72,7 @@ const LandingNavBar = ({ referredBy }) => {
               <Cashout className="text-[#c4ddf6] w-6 h-6" />
               Cashout
             </button>
+            <UserButton/>
           </>
         )}
       </div>
