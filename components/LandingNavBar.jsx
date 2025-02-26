@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Logo from "./Logo";
 import Cashout from "../public/images/cashout.svg";
 import Earn from "../public/images/earn.svg";
@@ -11,17 +11,10 @@ const LandingNavBar = ({ referredBy }) => {
   const router = useRouter();
   const { isSignedIn } = useUser();
   const { openSignUp } = useClerk();
-  const { ref } = useParams();
-
-  // Ensure logged-in users are redirected to /earn
-  useEffect(() => {
-    if (isSignedIn) {
-      router.push("/earn");
-    }
-  }, [isSignedIn, router]);
+  const params = useParams(); // Get URL parameters safely
 
   // Handle referral tracking: prioritize ref from URL over props
-  const referralCode = ref || referredBy;
+  const referralCode = params?.ref || referredBy;
 
   // Function to handle sign-up with referral metadata
   const handleSignUp = () => {
@@ -37,27 +30,52 @@ const LandingNavBar = ({ referredBy }) => {
         <Logo />
         <div className="h-12 w-px bg-gray-500 opacity-50 max-lg:hidden"></div>
 
-        {/* Earn Button */}
-        <button
-          onClick={handleSignUp}
-          className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
-        >
-          <Earn className="text-[#c4ddf6] w-6 h-6" />
-          Earn
-        </button>
+        {/* Render Different Buttons for Signed-in vs. Guest Users */}
+        {!isSignedIn ? (
+          <>
+            {/* Earn Button for Guest */}
+            <button
+              onClick={handleSignUp}
+              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+            >
+              <Earn className="text-[#c4ddf6] w-6 h-6" />
+              Earn
+            </button>
 
-        {/* Cashout Button */}
-        <button
-          onClick={handleSignUp}
-          className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
-        >
-          <Cashout className="text-[#c4ddf6] w-6 h-6" />
-          Cashout
-        </button>
+            {/* Cashout Button for Guest */}
+            <button
+              onClick={handleSignUp}
+              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+            >
+              <Cashout className="text-[#c4ddf6] w-6 h-6" />
+              Cashout
+            </button>
+          </>
+        ) : (
+          <>
+            {/* Earn Button for Signed-in Users */}
+            <button
+              onClick={() => router.push("/earn")}
+              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+            >
+              <Earn className="text-[#c4ddf6] w-6 h-6" />
+              Earn
+            </button>
+
+            {/* Cashout Button for Signed-in Users */}
+            <button
+              onClick={() => router.push("/cashout")}
+              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+            >
+              <Cashout className="text-[#c4ddf6] w-6 h-6" />
+              Cashout
+            </button>
+          </>
+        )}
       </div>
 
-      {/* Sign-in component with referral code */}
-      <LandingNavSignIn referredBy={referralCode} />
+      {/* Sign-in Component (Only Show for Guests) */}
+      {!isSignedIn && <LandingNavSignIn referredBy={referralCode} />}
     </div>
   );
 };
