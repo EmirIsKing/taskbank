@@ -56,7 +56,7 @@ const LandingNavBar = ({ referredBy }) => {
             {/* Earn Button for Signed-in Users */}
             <button
               onClick={() => router.push("/earn")}
-              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+              className="flex text-blue-100 font-bold opacity-55 gap-2"
             >
               <Earn className="text-[#c4ddf6] w-6 h-6" />
               Earn
@@ -65,7 +65,7 @@ const LandingNavBar = ({ referredBy }) => {
             {/* Cashout Button for Signed-in Users */}
             <button
               onClick={() => router.push("/cashout")}
-              className="flex text-blue-100 font-bold max-lg:hidden opacity-55 gap-2"
+              className="flex text-blue-100 font-bold opacity-55 gap-2"
             >
               <Cashout className="text-[#c4ddf6] w-6 h-6" />
               Cashout
