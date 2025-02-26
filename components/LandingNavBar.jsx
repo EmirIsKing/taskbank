@@ -26,9 +26,10 @@ const LandingNavBar = ({ referredBy }) => {
 
   return (
     <div className="fixed flex top-0 w-full h-16 z-10 bg-base-1 justify-center max-md:h-14 py-3">
-      <div className="flex justify-start gap-12 w-full items-center max-sm:w-20 pl-10 transition-all max-sm:pl-3">
+      <div className="flex justify-between items-center w-full px-10 max-sm:px-3">
+
         <Logo />
-        <div className="h-12 w-px bg-gray-500 opacity-50 max-lg:hidden"></div>
+        <div className="h-12 w-px bg-gray-500 opacity-50"></div>
 
         {/* Render Different Buttons for Signed-in vs. Guest Users */}
         {!isSignedIn ? (
