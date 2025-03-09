@@ -20,7 +20,7 @@ const LandingNavSignIn = ({ referredBy }) => {
         <button
           onClick={() => openSignIn()}
           className={cn(
-            "text-white font-bold transition-all px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-opacity-30 bg-gray-300 bg-opacity-20 border-gray-500 border rounded-sm"
+            "text-white font-bold transition-all px-8 max-md:px-3 max-md:text-xs py-3 hover:bg-opacity-30 bg-gray-300 bg-opacity-20 border-gray-500 border rounded-sm"
           )}
         >
           Sign In
@@ -33,7 +33,7 @@ const LandingNavSignIn = ({ referredBy }) => {
           openSignUp({...(referredBy && { unsafeMetadata: { referredBy } }),
           })
         }
-        className="bg-base-2 transition-all font-bold px-8 max-md:px-6 max-md:text-xs py-3 hover:bg-green-500 rounded-sm"
+        className="bg-base-2 transition-all font-bold px-8 max-md:px-3 max-md:text-xs py-3 hover:bg-green-500 rounded-sm"
       >
         Sign Up
       </button>
