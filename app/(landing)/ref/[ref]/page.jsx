@@ -6,8 +6,7 @@ import LandingSignUp from '@/components/LandingSignUp';
 import EarnCards from '@/components/EarnCards';
 import HookCards from '@/components/HookCards';
 import FooterLogo from '@/components/FooterLogo';
-import { useEffect } from "react";
-import { useUser } from "@clerk/nextjs"; // useUser is better than useClerk
+import TawkToChat from '@/components/TawkToButton';
 import { useParams } from "next/navigation";
 import Faq from '@/components/Faq';
 
@@ -232,7 +231,7 @@ const { ref } = useParams();
               <HookCards
               img={'/images/instantcashout.svg'}
               title={'Instant Cashouts'}
-              desc={'Need your earnings now? No problem. You can withdraw them almost instantly starting at $5,00 and 5 referrals.'}
+              desc={'Need your earnings now? No problem. You can withdraw them almost instantly starting at $3,00 and 3 referrals.'}
               alt={'instant-cashout'}/>
             </div>
             <div> <HookCards
@@ -251,7 +250,7 @@ const { ref } = useParams();
         <div className='w-full px-20 max-md:px-0 flex max-md:flex-col max-md:gap-7 text-blue-200 justify-between opacity-85'>
           <div className='flex flex-col text-blue-200 opacity-85 w-full text-center'>
             <FooterLogo/>
-            <p className='text-sm'>© 2020 - 2024 Freecash. All rights reserved.</p>
+            <p className='text-sm'>© 2020 - 2025 TaskBank. All rights reserved.</p>
           </div>
           <div className='w-full flex max-md:flex max-md:gap-9 gap-11 justify-center items-center'>
             <div className='flex flex-col gap-2'>
@@ -266,7 +265,8 @@ const { ref } = useParams();
             <p className='font-bold text-xl text-slate-200'>Support</p>
               <div className='flex flex-col gap-1 text-base max-md:text-xs'>
                 <a href="/faq">How does TaskBank work?</a>
-                <a href="/support">Support</a>
+                <TawkToChat/>
+                <p>Telegram @taskbank009</p>
               </div>
             </div>
           </div>
