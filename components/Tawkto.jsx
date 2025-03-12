@@ -18,7 +18,6 @@ export default function TawkToChatDashboard({ data }) {
     const email = data?.email;
 
     if (firstName && email) {
-      console.log("✅ Setting user details in Tawk.to", { firstName, email });
 
       // Use setAttributes if available
       if (typeof window.Tawk_API.setAttributes === "function") {
@@ -33,9 +32,7 @@ export default function TawkToChatDashboard({ data }) {
           }
         );
       } else {
-        // Fallback: Set visitor info directly
         console.warn("⚠️ setAttributes not found. Using visitor object.");
-        window.Tawk_API.visitor = { name: firstName, email };
       }
     } else {
       console.error("❌ User data is missing.");
@@ -53,7 +50,6 @@ export default function TawkToChatDashboard({ data }) {
     }
   }, [data]); // Runs when `data` changes
 
-  // 🔹 Ensure the chat toggles properly
   const toggleChat = () => {
     if (window.Tawk_API && typeof window.Tawk_API.toggle === "function") {
       console.log("🔄 Toggling Tawk.to chat");
