@@ -36,6 +36,7 @@ export default function TawkToChatDashboard() {
         console.error("❌ User data is missing, cannot set attributes.");
         console.log("firstName:", firstName);
         console.log("email:", email);
+        console.log("user:", user);
       }
     } else {
       console.error("❌ Tawk_API is not available");
