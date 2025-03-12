@@ -8,6 +8,11 @@ export default function TawkToChatDashboard({ data }) {
   const tawkMessengerRef = useRef();
   const { user } = useUser();
 
+  useEffect(() => {
+  console.log("data:", data)
+}, [data])
+
+  
   const onTawkLoad = () => {
     const firstName = user?.firstName;
     const email = user?.emailAddresses?.[0]?.email;
@@ -37,7 +42,6 @@ export default function TawkToChatDashboard({ data }) {
         console.log("firstName:", firstName);
         console.log("email:", email);
         console.log("user:", user);
-        console.log("data:", data);
       }
     } else {
       console.error("❌ Tawk_API is not available");
