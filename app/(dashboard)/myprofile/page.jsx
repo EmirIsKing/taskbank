@@ -261,6 +261,7 @@ const Page = () => {
           Referrals</span>
         <span className='text-2xl pr-4 text-base-2 text-opacity-90'>{referralStats?.referralCount || 0}</span>
        </a>
+       <p className='text-left w-full'>Telegram @taskbank009</p>
       </div>
     </div>
 

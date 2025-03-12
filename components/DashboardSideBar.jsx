@@ -23,8 +23,11 @@ const DashboardSideBar = () => {
       <div className='h-full bg-base-3 flex flex-col pt-20 px-2 text-blue-200 text-opacity-85 max-md:hidden'>
       {sidebarLinks.map((link, index)=>(
         <SideBarItem key={index} link={link} index={index}/>
+        
       ))}
+      <p>Telegram @taskbank009</p>
       </div>
+      
 
 
       {/* Mobile side bar */}

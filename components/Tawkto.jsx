@@ -1,12 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 
 export default function TawkToChatDashboard() {
   const [isClient, setIsClient] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
     setIsClient(true); // Ensures the component renders only on the client
+
+    if (window.Tawk_API) return; // Prevent duplicate script injections
 
     // Load Tawk.to script dynamically
     const script = document.createElement("script");
@@ -14,6 +18,7 @@ export default function TawkToChatDashboard() {
     script.async = true;
     script.charset = "UTF-8";
     script.setAttribute("crossorigin", "*");
+    script.id = "tawk-script"; // Unique ID to prevent removing other scripts
     document.body.appendChild(script);
 
     script.onload = () => {
@@ -23,9 +28,28 @@ export default function TawkToChatDashboard() {
     };
 
     return () => {
-      document.body.removeChild(script); // Cleanup script on unmount
+      const existingScript = document.getElementById("tawk-script");
+      if (existingScript) {
+        existingScript.remove(); // Removes only the Tawk.to script
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (window.Tawk_API && user?.firstName && user?.emailAddresses?.[0]?.email) {
+      window.Tawk_API.setAttributes(
+        {
+          name: user.firstName,
+          email: user.emailAddresses[0].email,
+        },
+        function (error) {
+          if (error) {
+            console.error("Error setting Tawk.to attributes:", error);
+          }
+        }
+      );
+    }
+  }, [user]); // Re-run when `user` changes
 
   // Toggle Chat Window
   const toggleChat = () => {
