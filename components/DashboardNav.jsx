@@ -82,7 +82,7 @@ const DashboardNav = () => {
               </span>
             </a>
           </div>
-          <TawkToChatDashboard firstName={data?.firstName} email={data?.email}/>
+          <TawkToChatDashboard data={data}/>
 
           {/* Notification Bell */}
           <button onClick={()=>setToggleBell(!toggleBell)}  type="button" className="ml-2">

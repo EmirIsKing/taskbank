@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 
-export default function TawkToChatDashboard() {
+export default function TawkToChatDashboard({ data }) {
   const tawkMessengerRef = useRef();
   const { user } = useUser();
 
@@ -37,6 +37,7 @@ export default function TawkToChatDashboard() {
         console.log("firstName:", firstName);
         console.log("email:", email);
         console.log("user:", user);
+        console.log("data:", data);
       }
     } else {
       console.error("❌ Tawk_API is not available");
