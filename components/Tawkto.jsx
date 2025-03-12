@@ -8,35 +8,54 @@ export default function TawkToChatDashboard({ data }) {
   const tawkMessengerRef = useRef();
   const { user } = useUser();
 
-  useEffect(() => {
-    if (!user || !window.Tawk_API) return;
+  const setUserAttributes = () => {
+    if (!window.Tawk_API) {
+      console.error("❌ Tawk_API is not available yet.");
+      return;
+    }
 
     const firstName = data?.firstName;
     const email = data?.email;
 
-    console.log("✅ Tawk.to widget loaded");
-
     if (firstName && email) {
-      console.log("Setting user details in Tawk.to", { firstName, email });
+      console.log("✅ Setting user details in Tawk.to", { firstName, email });
 
-      window.Tawk_API.setAttributes(
-        { name: firstName, email },
-        function (error) {
-          if (error) {
-            console.error("❌ Error setting Tawk.to user details:", error);
-          } else {
-            console.log("✅ User details set successfully");
+      // Use setAttributes if available
+      if (typeof window.Tawk_API.setAttributes === "function") {
+        window.Tawk_API.setAttributes(
+          { name: firstName, email },
+          (error) => {
+            if (error) {
+              console.error("❌ Error setting Tawk.to user details:", error);
+            } else {
+              console.log("✅ User details set successfully");
+            }
           }
-        }
-      );
+        );
+      } else {
+        // Fallback: Set visitor info directly
+        console.warn("⚠️ setAttributes not found. Using visitor object.");
+        window.Tawk_API.visitor = { name: firstName, email };
+      }
     } else {
       console.error("❌ User data is missing.");
     }
-  }, [data]); // Runs whenever `user` changes
+  };
+
+  useEffect(() => {
+    if (user) {
+      const checkTawkReady = setInterval(() => {
+        if (window.Tawk_API) {
+          clearInterval(checkTawkReady);
+          setUserAttributes();
+        }
+      }, 500);
+    }
+  }, [data]); // Runs when `data` changes
 
   // 🔹 Ensure the chat toggles properly
   const toggleChat = () => {
-    if (window.Tawk_API && window.Tawk_API.toggle) {
+    if (window.Tawk_API && typeof window.Tawk_API.toggle === "function") {
       console.log("🔄 Toggling Tawk.to chat");
       window.Tawk_API.toggle();
     } else {
