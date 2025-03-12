@@ -9,44 +9,30 @@ export default function TawkToChatDashboard({ data }) {
   const { user } = useUser();
 
   useEffect(() => {
-  console.log("data:", data)
-}, [data])
+    if (!user || !window.Tawk_API) return;
 
-  
-  const onTawkLoad = () => {
-    const firstName = user?.firstName;
-    const email = user?.emailAddresses?.[0]?.email;
+    const firstName = data?.firstName;
+    const email = data?.email;
+
     console.log("✅ Tawk.to widget loaded");
 
-    if (window.Tawk_API) {
-      console.log("Tawk_API is available");
+    if (firstName && email) {
+      console.log("Setting user details in Tawk.to", { firstName, email });
 
-      if (firstName && email) {
-        console.log("Setting user details in Tawk.to");
-
-        window.Tawk_API.setAttributes(
-          {
-            name: firstName,
-            email: email,
-          },
-          function (error) {
-            if (error) {
-              console.error("❌ Error setting Tawk.to user details:", error);
-            } else {
-              console.log("✅ User details set successfully");
-            }
+      window.Tawk_API.setAttributes(
+        { name: firstName, email },
+        function (error) {
+          if (error) {
+            console.error("❌ Error setting Tawk.to user details:", error);
+          } else {
+            console.log("✅ User details set successfully");
           }
-        );
-      } else {
-        console.error("❌ User data is missing, cannot set attributes.");
-        console.log("firstName:", firstName);
-        console.log("email:", email);
-        console.log("user:", user);
-      }
+        }
+      );
     } else {
-      console.error("❌ Tawk_API is not available");
+      console.error("❌ User data is missing.");
     }
-  };
+  }, [data]); // Runs whenever `user` changes
 
   // 🔹 Ensure the chat toggles properly
   const toggleChat = () => {
@@ -73,7 +59,6 @@ export default function TawkToChatDashboard({ data }) {
         propertyId="67a918d3825083258e12901e"
         widgetId="1ijm8hvht"
         ref={tawkMessengerRef}
-        onLoad={onTawkLoad}
       />
     </>
   );
