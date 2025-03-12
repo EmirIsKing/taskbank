@@ -1,12 +1,16 @@
 "use client";
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+import { useUser } from "@clerk/nextjs";
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 
-export default function TawkToChatDashboard({ firstName, email }) {
+export default function TawkToChatDashboard() {
   const tawkMessengerRef = useRef();
+  const { user } = useUser();
 
   const onTawkLoad = () => {
+    const firstName = user?.firstName;
+    const email = user?.emailAddresses?.[0]?.email;
     console.log("✅ Tawk.to widget loaded");
 
     if (window.Tawk_API) {
