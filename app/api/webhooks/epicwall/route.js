@@ -1,12 +1,10 @@
-import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc, getDoc, query, collection, where, getDocs } from "firebase/firestore"; 
 import { db } from "@/utils/firebase/clientApp"; 
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req, res) {
+export async function GET(req) {
   try {
-    // ✅ Extract query parameters using `req.nextUrl.searchParams`
-
     const { searchParams } = new URL(req.url);
     const user_id = searchParams.get("user_id");
     const offer_id = searchParams.get("offer_id");
@@ -21,30 +19,47 @@ export async function GET(req, res) {
       return new Response(JSON.stringify({ error: "Missing user_id" }), { status: 400 });
     }
 
+    // ✅ Get user document where referral_code == user_id
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("referral_code", "==", user_id));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      console.log("No matching user found for referral_code:", user_id);
+    } else {
+      querySnapshot.forEach(async (docSnap) => {
+        const userRef = doc(db, "users", docSnap.id);
+        const userInfo = docSnap.data();
+
+        // ✅ Update user referral reward
+        await updateDoc(userRef, {
+          reward: (userInfo.reward || 0) + amount,
+        });
+      });
+    }
+
+    // ✅ Update the user who completed the offer
     const userDocRef = doc(db, "users", user_id);
-    
-    // ✅ Check if user document exists, otherwise create it
     const userSnapshot = await getDoc(userDocRef);
+
     if (!userSnapshot.exists()) {
       await setDoc(userDocRef, { reward: 0, offers: [] }, { merge: true });
     }
 
-    // ✅ Fetch user data
     const userDoc = await getDoc(userDocRef);
     const userInfo = userDoc.data();
 
     if (userInfo) {
       await updateDoc(userDocRef, {
-        reward: (userInfo.reward || 0) + amount, // ✅ Increment reward
+        reward: (userInfo.reward || 0) + amount,
         offers: [
-          ...(userInfo.offers || []), // ✅ Ensure `offers` is always an array
+          ...(userInfo.offers || []),
           {
             provider: "Epicwall",
             offerId: offer_id,
             offerName: offer_name,
             payout,
             date: timestamp,
-            transactionId: txn_id,
             ip: conversion_ip,
             amount,
             secret,

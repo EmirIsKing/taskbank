@@ -1,17 +1,47 @@
 "use client"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ProviderCard from '@/components/ProviderCard'
 import BitlabsSvg from '@/public/images/bitlabs.svg'
 import { useUser, useAuth } from '@clerk/nextjs'
 import Loader from '@/components/Loader'
 import NotikLogo from '@/components/NotikLogo'
-import UpwallLogo from '@/components/UpwallLogo'
+import EpicwallLogo from '@/components/Epicwall'
+import getDetails from '@/utils/actions/getDetails'
+import UpwallLogo from '@/components/Upwall'
 
 const Page = () => {
+  const [data, setData] = useState(null);
+  const [referralCode, setReferralCode] = useState(true);
+  
 
   const { userId } = useAuth();
 
   const { isLoaded } = useUser();
+
+  useEffect(() => {
+    const unsubscribe = getDetails(userId, (data) => {
+      if (data) { 
+        setData(data);
+        setReferralCode(data.referralCode);
+      } else {
+        console.log("No data or error occurred");
+      }
+    });
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, [ userId ]); 
+
+useEffect(() => {
+  console.log("data:",data);
+  console.log("referralCode:",referralCode);
+  console.log("userId:",userId);
+}, [userId, data, referralCode]);
+
+
 
   if (!isLoaded) {
     return (
@@ -28,10 +58,17 @@ const Page = () => {
   
     },
     {
+      name: "Epicwall",
+      image: EpicwallLogo,
+      iframeName: "Epicwall",
+      iframeSrc: `https://epicwall.net/wall/offers/884/743763/${referralCode}`
+  
+    },
+    {
       name: "Upwall",
       image: UpwallLogo,
       iframeName: "Upwall",
-      iframeSrc: `https://epicwall.net/wall/offers/884/743763/${userId}`
+      iframeSrc: `https://offerwall.upwall.net/?app_id=6233-0982-3969-4c17&userid=${userId}`
   
     }
   ]
