@@ -42,7 +42,7 @@ const Page = () => {
                 ))
               ) : (
                   <span colSpan="4" className="p-4 text-center text-blue-200">
-                    No referrals yet
+                    No withdrawals yet
                   </span>
               )}
 
